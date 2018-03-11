@@ -1,23 +1,31 @@
 const {BrowserWindow} = require('electron').remote
 const path = require('path')
-const ipc = require('electron').ipcMain
-
-
+const {ipcRenderer} = require('electron')
 const newWindowBtn = document.getElementById('new')
 
-newWindowBtn.addEventListener('click', (event) => {
+
+ipcRenderer.on('reply', (event, arg) => {
+  console.log('bbbbbbbbbb')
+  const message = `Asynchronous message reply: ${arg}`
+  console.log(message)
+})
+
+
+
+
+newWindowBtn.addEventListener('click', () => {
   const modalPath = path.join('file://', __dirname, '../../sections/windows/modal.html')
   let win = new BrowserWindow({ width: 800, height: 600 })
-  
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
   win.show()
+  
 })
 
 
-ipc.on('getMsg', (sys, msg) => {
-  console.log(msg)  
-})
+
+
+
 
 
 // const n = document.getElementById("new");
