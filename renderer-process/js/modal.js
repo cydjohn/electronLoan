@@ -1,5 +1,7 @@
 const {ipcRenderer} = require('electron');
-const btn = document.getElementById("connectMain")
+
+
+const btn = document.getElementById("add-new")
 btn.addEventListener('click', () => {
     ipcRenderer.send('getMsg', "fasdfasdfasdf")
 })
