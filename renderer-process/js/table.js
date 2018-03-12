@@ -11,7 +11,7 @@ ipcRenderer.on('add-new-loan', (event, arg) => {
 
 
 newWindowBtn.addEventListener('click', () => {
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/modal.html')
+  const modalPath = path.join('file://', __dirname, '../../sections/windows/new-loan.html')
   let win = new BrowserWindow({ width: 800, height: 600 })
   win.on('close', () => { win = null })
   win.loadURL(modalPath)

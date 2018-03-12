@@ -5,7 +5,7 @@ const autoUpdater = require('./auto-updater')
 
 const debug = /--debug/.test(process.argv[2])
 
-if (process.mas) app.setName('Electron APIs')
+if (process.mas) app.setName('借款系统')
 
 let mainWindow = null
 
