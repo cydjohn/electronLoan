@@ -1,4 +1,17 @@
 <div class="container">
+    <script>
+        window.nodeRequire = require;
+        // delete window.require;
+        delete window.exports;
+        delete window.module;
+      </script>
+      <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <h1>
       <center>录入职工信息</center>
     </h1>
@@ -37,6 +50,12 @@
             <input type="text" class="form-control" id="start-time" placeholder="请输入借款时间">
           </div>
         </div>
+
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $('#start-time').datetimepicker({format: 'L'});
+          });
+        </script>
       
       
         <div class="form-group">
@@ -45,6 +64,11 @@
             <input type="text" class="form-control" id="end-time" placeholder="请输入还款时间">
           </div>
         </div>
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $('#end-time').datetimepicker({format: 'L'});
+          });
+        </script>
       
       
         <div class="form-group">
@@ -68,13 +92,7 @@
 
 
 
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script>
   require('../../renderer-process/js/modal.js')
 </script>
