@@ -16,7 +16,6 @@ newWindowBtn.addEventListener('click', () => {
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
   win.show()
-
 })
 
 
