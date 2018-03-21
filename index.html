@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
 
@@ -29,6 +30,7 @@
   <link rel="import" href="sections/media/pdf.html">
   <link rel="import" href="sections/media/desktop-capturer.html">
 </head>
+
 <body>
 
   <nav class="nav js-nav">
@@ -38,11 +40,17 @@
 
     <div class="nav-item u-category-windows">
       <h5 class="nav-category">
-        <svg class="nav-icon"><use xlink:href="assets/img/icons.svg#icon-windows"></use></svg>
+        <svg class="nav-icon">
+          <use xlink:href="assets/img/icons.svg#icon-windows"></use>
+        </svg>
         借款系统
       </h5>
-      <button type="button" id="button-windows" data-section="windows" class="nav-button"><em>新建</em></button>
-      <button type="button" id="button-table" data-section="table" class="nav-button"><em>查询</em></button>
+      <button type="button" id="button-windows" data-section="windows" class="nav-button">
+        <em>新建</em>
+      </button>
+      <button type="button" id="button-table" data-section="table" class="nav-button">
+        <em>查询</em>
+      </button>
     </div>
 
     <footer class="nav-footer">
@@ -52,6 +60,14 @@
 
   <main class="content js-content"></main>
 
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <script type="text/javascript">
+    window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+    require('./node_modules/bootstrap/dist/js/bootstrap.min.js');
+  </script>
+  <script src="./test/moment.min.js"></script>
+  <script src="./test/bootstrap-datetimepicker.min.js"></script>
+  <script>if (window.module) module = window.module;</script>
   <script>
     require('./assets/imports')
     require('./assets/ex-links')
@@ -60,5 +76,7 @@
     require('./assets/code-blocks')
     require('./assets/normalize-shortcuts')
   </script>
+
 </body>
+
 </html>
