@@ -62,6 +62,7 @@
                             <th>合同编号</th>
                             <th>姓名</th>
                             <th>身份证号</th>
+                            <th>银行卡号</th>
                             <th>借款时间</th>
                             <th>付息日期</th>
                             <th>还款日期</th>
@@ -74,7 +75,7 @@
                             <th>第二次付息金额</th>
                             <th>第三次付息金额</th>
                             <th>第四次付息金额</th>
-                            <th>银行卡号</th>
+                            
                         </tr>
                     </thead>
                     <tbody id="data" style="overflow-y:auto; ">
@@ -84,10 +85,11 @@
                             <td>Sachin</td>
                             <td>53023421532542345</td>
                             <td>62212424245345345345</td>
-                            <td>运输公司</td>
                             <td>2018-01-01</td>
+                            <td>2018-03-15</td>
                             <td>2019-01-01</td>
                             <td>10000.00</td>
+                            <td>6.3</td>
                             <td>630</td>
                             <td>27.18</td>
                             <td>602.82</td>
@@ -106,5 +108,8 @@
                 </div>
             </div>
         </div>
+        <script>
+            require('./renderer-process/js/table.js')
+        </script>
     </section>
 </template>
