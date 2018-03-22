@@ -10,7 +10,7 @@ document.body.addEventListener('click', (event) => {
   }
 })
 
-function handleSectionTrigger (event) {
+function handleSectionTrigger(event) {
   hideAllSectionsAndDeselectButtons()
 
   // Highlight clicked button and show view
@@ -25,22 +25,22 @@ function handleSectionTrigger (event) {
   settings.set('activeSectionButtonId', buttonId)
 }
 
-function activateDefaultSection () {
+function activateDefaultSection() {
   document.getElementById('button-new-loan').click()
 }
 
-function showMainContent () {
+function showMainContent() {
   document.querySelector('.js-nav').classList.add('is-shown')
   document.querySelector('.js-content').classList.add('is-shown')
 }
 
-function handleModalTrigger (event) {
+function handleModalTrigger(event) {
   hideAllModals()
   const modalId = `${event.target.dataset.modal}-modal`
   document.getElementById(modalId).classList.add('is-shown')
 }
 
-function hideAllModals () {
+function hideAllModals() {
   const modals = document.querySelectorAll('.modal.is-shown')
   Array.prototype.forEach.call(modals, (modal) => {
     modal.classList.remove('is-shown')
@@ -48,7 +48,7 @@ function hideAllModals () {
   showMainContent()
 }
 
-function hideAllSectionsAndDeselectButtons () {
+function hideAllSectionsAndDeselectButtons() {
   const sections = document.querySelectorAll('.js-section.is-shown')
   Array.prototype.forEach.call(sections, (section) => {
     section.classList.remove('is-shown')
@@ -60,17 +60,39 @@ function hideAllSectionsAndDeselectButtons () {
   })
 }
 
-function displayAbout () {
+function displayAbout() {
   document.querySelector('#about-modal').classList.add('is-shown')
 }
 
 // Default to the view that was active the last time the app was open
 const sectionId = settings.get('activeSectionButtonId')
-if (sectionId) {
+
+const passwordMess = document.getElementById('wrongPass')
+passwordMess.hidden = true
+
+let canLogin = false
+let pass = document.getElementById('pass')
+const loginButton = document.getElementById('get-started')
+
+loginButton.addEventListener('click', () => {
+  if (pass.value == "123456") {
+    canLogin = true
+    document.querySelector('#about-modal').remove('is-shown')
+    showMainContent()
+    const section = document.getElementById(sectionId)
+    if (section) section.click()
+  }
+  else {
+    passwordMess.hidden = false
+  }
+})
+
+
+if (sectionId && canLogin) {
   showMainContent()
   const section = document.getElementById(sectionId)
   if (section) section.click()
 } else {
-  activateDefaultSection()
   displayAbout()
+  activateDefaultSection()
 }

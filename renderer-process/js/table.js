@@ -1,7 +1,7 @@
 const { BrowserWindow } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
-const newWindowBtn = document.getElementById('new')
+// const newWindowBtn = document.getElementById('new')
 
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
@@ -10,13 +10,13 @@ ipcRenderer.on('add-new-loan', (event, arg) => {
 })
 
 
-newWindowBtn.addEventListener('click', () => {
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/new-loan.html')
-  let win = new BrowserWindow({ width: 800, height: 600 })
-  win.on('close', () => { win = null })
-  win.loadURL(modalPath)
-  win.show()
-})
+// newWindowBtn.addEventListener('click', () => {
+//   const modalPath = path.join('file://', __dirname, '../../sections/windows/new-loan.html')
+//   let win = new BrowserWindow({ width: 800, height: 600 })
+//   win.on('close', () => { win = null })
+//   win.loadURL(modalPath)
+//   win.show()
+// })
 
 
 
