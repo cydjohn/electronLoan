@@ -5,12 +5,20 @@ const btn = document.getElementById("add-new")
 const name = document.getElementById("name")
 const idNumber = document.getElementById("id-number")
 const bankAccount = document.getElementById("bank-account")
+const amount = document.getElementById("amount")
 const startTime = document.getElementById("start-time")
 const endTime = document.getElementById("end-time")
 
-
+let canSubmit = false
 btn.addEventListener('click', () => {
-    ipcRenderer.send('getMsg', "fasdfasdfasdf")
+    if(canSubmit) {
+        ipcRenderer.send('getMsg', "fasdfasdfasdf")
+    }
+})
+
+ipcRenderer.on('add-new-loan', (event, arg) => {
+    const message = `Asynchronous message reply: ${arg}`
+    console.log(message)
 })
 
 // 身份验证
@@ -26,9 +34,7 @@ function isCardNo(card) {
 
 
 idNumber.addEventListener('change', () => {
-    if (!isCardNo(idNumber.value)) {
-
-    }
+    canSubmit = isCardNo(idNumber.value)
 })
 
 // 银行卡验证
@@ -37,18 +43,32 @@ function isBankCard(str) {
     if (regex.test(str)) {
         return true;
     }
-    alert("银行卡输入不合法");
+    alert("银行卡信息输入不合法");
     return false;
 }
 
 bankAccount.addEventListener('change', () => {
-    if (!isBankCard(idNumber.value)) {
+    canSubmit =  isBankCard(idNumber.value)
+})
 
+// 借款金额验证
+function isValidAmount(number) {
+    if(number<1) {
+        alert("请输入有效金额")
+        return false
     }
+    else{
+        return true
+    }
+}
+
+amount.addEventListener('change',() => {
+    canSubmit =  isValidAmount(amount.value)
 })
 
 
-ipcRenderer.on('add-new-loan', (event, arg) => {
-    const message = `Asynchronous message reply: ${arg}`
-    console.log(message)
-})
+
+// 日期验证
+
+
+
