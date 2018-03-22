@@ -11,6 +11,9 @@ const amount = document.getElementById("amount")
 const startTime = document.getElementById("start-time")
 const endTime = document.getElementById("end-time")
 
+const interest = document.getElementById('interest')
+const interestRate = document.getElementById('interest-rate')
+
 let canSubmit = false
 btn.addEventListener('click', () => {
     if(canSubmit) {
@@ -65,7 +68,11 @@ function isValidAmount(number) {
 }
 
 amount.addEventListener('change',() => {
-    canSubmit =  isValidAmount(amount.value)
+    if(isValidAmount(amount.value)) {
+        interest.value = amount.value * interestRate.value/100
+        canSubmit = true
+    }
+    
 })
 
 // 日期验证
