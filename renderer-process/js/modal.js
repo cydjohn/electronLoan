@@ -17,6 +17,10 @@ const interestRate = document.getElementById('interest-rate')
 const tax = document.getElementById('tax')
 const actualInterest = document.getElementById('actual-interest')
 const dailyInterest = document.getElementById('daily-interest')
+const firstPaymentDay = document.getElementById('first-payment-day')
+const secondPaymentDay = document.getElementById('second-payment-day')
+const thirdPaymentDay = document.getElementById('third-payment-day')
+const fourthPaymentDay = document.getElementById('fourth-payment-day')
 
 let canSubmit = false
 btn.addEventListener('click', () => {
@@ -119,16 +123,14 @@ function calculatePaymentDate() {
     for(d in paymentDates) {
         if(moment(startTime.value).isBefore(moment(paymentDates[d],'MM-DD'))) {
             dailyInterest.value = (actualInterest.value / 360).toFixed(2)
+            firstPaymentDay.innerHTML = "第一次付息日：" + paymentDates[d] + " " + dailyInterest.value * (moment(paymentDates[d],'MM-DD').diff(moment(startTime.value),'days')-2)+"￥"
+            restInterest = ((actualInterest.value - dailyInterest.value * (moment(paymentDates[d],'MM-DD').diff(moment(startTime.value),'days')-2))/3).toFixed(2)
+            secondPaymentDay.innerHTML = "第二次付息日：" + paymentDates[++d%4] + " " + restInterest+"￥"
+            thirdPaymentDay.innerHTML = "第三次付息日：" + paymentDates[++d%4] + " " + restInterest+"￥"
+            fourthPaymentDay.innerHTML = "第四次付息日：" + paymentDates[++d%4] + " " + restInterest+"￥"
+            
             break
         }
     }
-
-
-
-    console.log(moment('3-20-2018').isBefore(moment('3-15','MM-DD')))
-    console.log(moment('3-20-2018').isBefore(moment('6-15','MM-DD')))
-
-    console.log(moment('6-15','MM-DD').diff(moment('3-20-2018'),'days'))
-    // console.log(int(moment('3-20-2018').diff(moment('6-15','MM-DD'),'days')))
 }
 
