@@ -13,6 +13,8 @@ const endTime = document.getElementById("end-time")
 
 const interest = document.getElementById('interest')
 const interestRate = document.getElementById('interest-rate')
+const tax = document.getElementById('tax')
+const actualInterest = document.getElementById('actual-interest')
 
 let canSubmit = false
 btn.addEventListener('click', () => {
@@ -96,5 +98,13 @@ endTime.addEventListener('change',() => {
     canSubmit= isValidTime(startTime.value,endTime.value)
 })
 
-
+// 计算
+tax.addEventListener('change',() => {
+    if(tax.value >= 0) {
+        actualInterest.value = interest.value - tax.value
+    }
+    else {
+        alert('请输入有效税费')
+    }
+})
 
