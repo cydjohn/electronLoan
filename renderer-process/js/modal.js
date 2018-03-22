@@ -1,3 +1,5 @@
+// import { start } from 'repl';
+
 const { ipcRenderer } = require('electron');
 
 
@@ -66,9 +68,26 @@ amount.addEventListener('change',() => {
     canSubmit =  isValidAmount(amount.value)
 })
 
-
-
 // 日期验证
+function isValidTime(startTime,endTime) {
+    var d1 = Date.parse(startTime)
+    var d2 = Date.parse(endTime)
+    if(d1 > d2) {
+        alert("还款时间不能早于借款时间")
+        return false
+    }
+    else {
+        return true
+    }
+}
+
+startTime.addEventListener('change',() => {
+    console.log(Date(startTime.value))
+})
+
+endTime.addEventListener('change',() => {
+    canSubmit= isValidTime(startTime.value,endTime.value)
+})
 
 
 
