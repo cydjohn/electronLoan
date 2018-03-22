@@ -73,7 +73,6 @@ passwordMess.hidden = true
 let canLogin = true
 // let pass = document.getElementById('pass')
 // const loginButton = document.getElementById('get-started')
-
 // loginButton.addEventListener('click', () => {
 //   if (pass.value == "123456") {
 //     canLogin = true
