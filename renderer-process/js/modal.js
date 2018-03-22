@@ -1,6 +1,7 @@
 // import { start } from 'repl';
 
 const { ipcRenderer } = require('electron');
+var moment = require('moment');
 
 
 const btn = document.getElementById("add-new")
@@ -15,6 +16,7 @@ const interest = document.getElementById('interest')
 const interestRate = document.getElementById('interest-rate')
 const tax = document.getElementById('tax')
 const actualInterest = document.getElementById('actual-interest')
+const dailyInterest = document.getElementById('daily-interest')
 
 let canSubmit = false
 btn.addEventListener('click', () => {
@@ -87,10 +89,12 @@ function isValidTime(startTime,endTime) {
     }
     else {
         return true
+
     }
 }
 
 startTime.addEventListener('change',() => {
+    calculatePaymentDate()
     console.log(Date(startTime.value))
 })
 
@@ -102,9 +106,29 @@ endTime.addEventListener('change',() => {
 tax.addEventListener('change',() => {
     if(tax.value >= 0) {
         actualInterest.value = interest.value - tax.value
+        calculatePaymentDate()
     }
     else {
         alert('请输入有效税费')
     }
 })
+
+
+function calculatePaymentDate() {
+    var paymentDates = ['3-15','6-15','9-15','12-15']
+    for(d in paymentDates) {
+        if(moment(startTime.value).isBefore(moment(paymentDates[d],'MM-DD'))) {
+            dailyInterest.value = (actualInterest.value / 360).toFixed(2)
+            break
+        }
+    }
+
+
+
+    console.log(moment('3-20-2018').isBefore(moment('3-15','MM-DD')))
+    console.log(moment('3-20-2018').isBefore(moment('6-15','MM-DD')))
+
+    console.log(moment('6-15','MM-DD').diff(moment('3-20-2018'),'days'))
+    // console.log(int(moment('3-20-2018').diff(moment('6-15','MM-DD'),'days')))
+}
 
