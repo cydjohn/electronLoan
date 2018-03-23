@@ -34,13 +34,14 @@ let allData = [{
   interest:"630"
 }]
 
-let tableData = allData
-loadData()
+// let tableData = allData
+// loadData()
 
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
+  allData.push(arg)
+  tableData = []
   tableData.push(arg)
-  // document.getElementById('data').innerHTML += "<tr> <td>1</td> <td>A0001</td> <td>Sachin</td> <td>53023421532542345</td> <td>62212424245345345345</td> <td>2018-01-01</td> <td>2018-03-15</td> <td>2019-01-01</td> <td>10000.00</td> <td>6.3</td> <td>630</td> <td>27.18</td> <td>602.82</td> <td>141.95</td> <td>153.62</td> <td>153.62</td> <td>153.62</td> </tr>";
   loadData()
   document.getElementById('button-table').click()
 })
@@ -78,6 +79,9 @@ function loadData() {
 const idSearchBox = document.getElementById("srch-term")
 
 function checkId(idn) {
+  if(idSearchBox.value == "") {
+    return false
+  }
   return idn.idNumber.search(idSearchBox.value) != -1
 }
 
@@ -91,6 +95,9 @@ idSearchBox.addEventListener("input",()=>{
 const contraIdSearchBox = document.getElementById("contra-id")
 
 function checkContractNumber(bn) {
+  if(contraIdSearchBox.value == "") {
+    return false
+  }
   return bn.contractNumber.search(contraIdSearchBox.value) != -1
 }
 
