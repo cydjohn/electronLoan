@@ -3,7 +3,7 @@ const path = require('path')
 const { ipcRenderer } = require('electron')
 // const newWindowBtn = document.getElementById('new')
 
-let tableData = [{
+let allData = [{
   name:"cyd",
   idNumber:"530453199408140920",
   bankAccount:"6222342109485743",
@@ -16,11 +16,25 @@ let tableData = [{
   firstPayment:"141.95",
   restPayment:"153.63",
   interest:"630"
+},
+{
+  name:"zxh",
+  idNumber:"524453199408140920",
+  bankAccount:"6222432109485743",
+  startTime:"2018-3-20",
+  endTime:"2019-3-20",
+  amount:"10000",
+  interestRate:"6.3",
+  tax:"27.18",
+  actualInterest:"602.82",
+  firstPayment:"141.95",
+  restPayment:"153.63",
+  interest:"630"
 }]
 
-// let tableData = []
+let tableData = allData
 loadData()
-console.log(tableData.length)
+
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
   tableData.push(arg)
@@ -57,7 +71,18 @@ function loadData() {
 }
 
 
+// 搜索
 
+const contraIdSearchBox = document.getElementById("contra-id")
+
+function checkId(idn) {
+  return idn.idNumber.search(contraIdSearchBox.value) != -1
+}
+
+contraIdSearchBox.addEventListener("input",()=>{
+  tableData = allData.filter(checkId);
+  loadData()
+})
 
 
 
