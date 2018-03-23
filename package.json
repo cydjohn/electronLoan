@@ -1,7 +1,7 @@
 {
   "name": "ElectronLoan",
   "productName": "借款系统",
-  "version": "0.3.0",
+  "version": "0.6.2",
   "description": "运输公司借款系统",
   "private": true,
   "main": "main.js",
@@ -28,7 +28,7 @@
     "API",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "cyd",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.1",

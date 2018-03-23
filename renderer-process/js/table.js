@@ -101,6 +101,9 @@ contraIdSearchBox.addEventListener("input",()=>{
 
 
 
+// 打印预览
+
+
 // const n = document.getElementById("new");
 // const e = document.getElementById("data");
 // n.addEventListener('click', (event) => {

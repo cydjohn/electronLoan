@@ -1,8 +1,27 @@
 <html>
-    <head>
 
-    </head>
-    <body>
-        
-    </body>
+<head>
+    <title>打印预览</title>
+</head>
+
+<body>
+    <table class="table table-striped table-hover" style="overflow: auto;display:block;max-height: 550px" id="dataTable">
+        <thead>
+            <tr>
+                <th>合同编号</th>
+                <th>姓名</th>
+                <th>银行卡号</th>
+                <th>借款时间</th>
+                <th>利息金额</th>
+            </tr>
+        </thead>
+        <tbody id="data" style="overflow-y:auto; ">
+
+        </tbody>
+    </table>
+    <script>
+        require('./renderer-process/js/print-preview.js')
+    </script>
+</body>
+
 </html>
