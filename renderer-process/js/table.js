@@ -5,6 +5,7 @@ const { ipcRenderer } = require('electron')
 
 let allData = [{
   name:"cyd",
+  contractNumber:"A0001",
   idNumber:"530453199408140920",
   bankAccount:"6222342109485743",
   startTime:"2018-3-20",
@@ -19,6 +20,7 @@ let allData = [{
 },
 {
   name:"zxh",
+  contractNumber:"A0002",
   idNumber:"524453199408140920",
   bankAccount:"6222432109485743",
   startTime:"2018-3-20",
@@ -49,8 +51,8 @@ function loadData() {
   for(d in tableData) {
     document.getElementById('data').innerHTML +=
     "<tr>" +
-    "<td>" + parseInt(d)+1 + "</td>" +
-    "<td>" + "A0001" + "</td>" +
+    "<td>" + (parseInt(d)+1) + "</td>" +
+    "<td>" + tableData[d].contractNumber + "</td>" +
     "<td>" + tableData[d].name + "</td>" +
     "<td>" + tableData[d].idNumber + "</td>" +
     "<td>" + tableData[d].bankAccount + "</td>" +
@@ -71,16 +73,29 @@ function loadData() {
 }
 
 
-// 搜索
+// 搜索身份证号
+
+const idSearchBox = document.getElementById("srch-term")
+
+function checkId(idn) {
+  return idn.idNumber.search(idSearchBox.value) != -1
+}
+
+idSearchBox.addEventListener("input",()=>{
+  tableData = allData.filter(checkId);
+  loadData()
+})
+
+// 搜索合同号
 
 const contraIdSearchBox = document.getElementById("contra-id")
 
-function checkId(idn) {
-  return idn.idNumber.search(contraIdSearchBox.value) != -1
+function checkContractNumber(bn) {
+  return bn.contractNumber.search(contraIdSearchBox.value) != -1
 }
 
 contraIdSearchBox.addEventListener("input",()=>{
-  tableData = allData.filter(checkId);
+  tableData = allData.filter(checkContractNumber);
   loadData()
 })
 
