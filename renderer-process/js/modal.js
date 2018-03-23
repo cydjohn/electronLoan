@@ -147,7 +147,6 @@ function calculatePaymentDate() {
             fourthPaymentDay.innerHTML = "第四次付息日：" + paymentDates[++d%4] + " " + restInterest+"￥"
             loan.firstPayment = firstPay
             loan.restPayment = ((actualInterest.value - firstPay)/3).toFixed(2)
-            console.log(loan)
             break
         }
     }
