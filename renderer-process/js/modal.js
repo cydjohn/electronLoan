@@ -91,13 +91,38 @@ function isValidAmount(number) {
     }
 }
 
-amount.addEventListener('change',() => {
+amount.addEventListener('input',() => {
     if(isValidAmount(amount.value)) {
         interest.value = amount.value * interestRate.value/100
         canSubmit = true
     }
+    else {
+        canSubmit = false
+    }
     
 })
+
+// 税率验证
+function isValidTaxRate(number) {
+    if(number<0) {
+        alert("请输入有效税率")
+        return false
+    }
+    else{
+        return true
+    }
+}
+
+interestRate.addEventListener('input',() => {
+    if(isValidTaxRate(interestRate.value)) {
+        interest.value = amount.value * interestRate.value/100
+        canSubmit = true
+    }
+    else {
+        canSubmit = false
+    }
+})
+
 
 // 日期验证
 function isValidTime(startTime,endTime) {
@@ -123,7 +148,7 @@ endTime.addEventListener('change',() => {
 })
 
 // 计算
-tax.addEventListener('change',() => {
+tax.addEventListener('input',() => {
     if(tax.value >= 0) {
         actualInterest.value = interest.value - tax.value
         calculatePaymentDate()
