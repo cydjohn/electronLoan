@@ -22,7 +22,7 @@
     "prepack": "check-for-leaks",
     "prepush": "check-for-leaks"
   },
-  "repository": "https://github.com/electron/electron-api-demos",
+  "repository": "https://github.com/cydjohn/electronLoan",
   "keywords": [
     "Electron",
     "API",
