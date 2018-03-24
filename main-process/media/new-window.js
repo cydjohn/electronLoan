@@ -1,21 +1,36 @@
-const {ipcMain,ipcRenderer} = require('electron')
-const {BrowserWindow} = require('electron')
+const { ipcMain, ipcRenderer } = require('electron')
+const { BrowserWindow } = require('electron')
 
+var Datastore = require('nedb')
+    , db = new Datastore({ filename: 'test.db' });
+db.loadDatabase(function (err) {    // Callback is optional
+    // Now commands will be executed
+});
 
 let tableData = []
 
 ipcMain.on('getMsg', (event, arg) => {
     var arr = BrowserWindow.getAllWindows();
-    for(var i = 0; i < arr.length; i++){
+    for (var i = 0; i < arr.length; i++) {
         const toWindow = arr[i];
         toWindow.webContents.send('add-new-loan', arg);
     }
-    // document.getElementById('data').innerHTML += "<tr> <td>1</td> <td>A0001</td> <td>Sachin</td> <td>53023421532542345</td> <td>62212424245345345345</td> <td>2018-01-01</td> <td>2018-03-15</td> <td>2019-01-01</td> <td>10000.00</td> <td>6.3</td> <td>630</td> <td>27.18</td> <td>602.82</td> <td>141.95</td> <td>153.62</td> <td>153.62</td> <td>153.62</td> </tr>";
-    // ipcRenderer.sendTo(0, 'add-new-loan',arg);
+    db.insert(arg, function (err, newDoc) {   // Callback is optional
+        // newDoc is the newly inserted document, including its _id
+        // newDoc has no key called notToBeSaved since its value was undefined
+    });
+
 })
 
 ipcMain.on('pass-print-value', (event, arg) => {
     tableData = arg
+})
+
+ipcMain.on('request-all-data', (event, arg) => {
+    // Find all documents in the collection
+    db.find({}, function (err, docs) {
+        event.sender.send('get-all-data', docs)
+    });
 })
 
 ipcMain.on('get-print-value', (event, arg) => {

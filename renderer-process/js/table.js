@@ -37,6 +37,12 @@ let allData = [{
 let tableData = []
 // loadData()
 
+ipcRenderer.send('request-all-data')
+
+ipcRenderer.on('get-all-data', (event, arg) => {
+  tableData = arg
+  loadData()
+})
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
   allData.push(arg)
@@ -119,4 +125,8 @@ printPreview.addEventListener('click', (event) => {
   win.loadURL(modalPath)
   win.show()
 })
+
+
+
+
 

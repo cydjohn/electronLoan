@@ -43,10 +43,6 @@ btn.addEventListener('click', () => {
     }
 })
 
-ipcRenderer.on('add-new-loan', (event, arg) => {
-    const message = `Asynchronous message reply: ${arg}`
-    console.log(message)
-})
 
 // 身份验证
 function isCardNo(card) {
