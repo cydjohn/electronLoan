@@ -1,9 +1,13 @@
 const path = require('path')
 const glob = require('glob')
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow,remote} = require('electron')
 const autoUpdater = require('./auto-updater')
 
 const debug = /--debug/.test(process.argv[2])
+
+var Datastore = require('nedb')
+var userData = app.getAppPath('userData');
+db = new Datastore({ filename: userData+'/db/persons.db'});
 
 if (process.mas) app.setName('借款系统')
 
@@ -12,6 +16,7 @@ let mainWindow = null
 function initialize () {
   const shouldQuit = makeSingleInstance()
   if (shouldQuit) return app.quit()
+
 
   loadDemos()
 
@@ -59,6 +64,7 @@ function initialize () {
     }
   })
 }
+
 
 // Make this app a single instance app.
 //

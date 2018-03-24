@@ -1,11 +1,12 @@
-const { ipcMain, ipcRenderer } = require('electron')
+const path = require('path')
+const { ipcMain, ipcRenderer,app} = require('electron')
 const { BrowserWindow } = require('electron')
 
+
 var Datastore = require('nedb')
-    , db = new Datastore({ filename: 'test.db' });
-db.loadDatabase(function (err) {    // Callback is optional
-    // Now commands will be executed
-});
+var userData = app.getAppPath('userData');
+db = new Datastore({ filename: userData+'/db/persons.db', autoload: true });
+
 
 let tableData = []
 

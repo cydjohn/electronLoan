@@ -38,7 +38,7 @@ btn.addEventListener('click', () => {
         loan.interestRate = interestRate.value
         loan.tax = tax.value
         loan.actualInterest = actualInterest.value
-
+        
         ipcRenderer.send('getMsg', loan)
     }
 })
