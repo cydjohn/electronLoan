@@ -40,8 +40,7 @@ let tableData = []
 ipcRenderer.send('request-all-data')
 
 ipcRenderer.on('get-all-data', (event, arg) => {
-  tableData = arg
-  loadData()
+  allData = arg
 })
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
