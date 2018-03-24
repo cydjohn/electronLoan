@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>打印预览</title>
+</head>
+
+<body>
+
+    <h1>
+        <center>录入职工信息</center>
+    </h1>
+    <div>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="姓名" class="col-sm-2 control-label">名字</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="请输入名字">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="id-number" class="col-sm-2 control-label">身份证号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id-number" placeholder="请输入身份证号">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bank-account" class="col-sm-2 control-label">银行卡号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="bank-account" placeholder="请输入银行卡号">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" class="col-sm-2 control-label">借款金额</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="amount" placeholder="请输入借款金额">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="start-time" class="col-sm-2 control-label">借款时间</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="start-time" placeholder="请输入借款时间">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="end-time" class="col-sm-2 control-label">还款时间</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="end-time" placeholder="请输入还款时间">
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="company-name" class="col-sm-2 control-label">借款利率（%）</label>
+                <div class="col-sm-10">
+                    <input type="float" value="6.3" class="form-control" id="interest-rate">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company-name" class="col-sm-2 control-label">应得利息</label>
+                <div class="col-sm-10">
+                    <input type="float" class="form-control" id="interest" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company-name" class="col-sm-2 control-label">应交税费</label>
+                <div class="col-sm-10">
+                    <input type="float" class="form-control" id="tax">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="actual-interest" class="col-sm-2 control-label">实际利息</label>
+                <div class="col-sm-10">
+                    <input type="float" class="form-control" id="actual-interest" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="daily-interest" class="col-sm-2 control-label">税后日利息</label>
+                <div class="col-sm-10">
+                    <input type="float" class="form-control" id="daily-interest" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company-name" id='first-payment-day'>第一次付息日：</label>
+            </div>
+            <div class="form-group">
+                <label for="company-name" id='second-payment-day'>第二次付息日：</label>
+            </div>
+            <div class="form-group">
+                <label for="company-name" id='third-payment-day'>第三次付息日：</label>
+            </div>
+            <div class="form-group">
+                <label for="company-name" id='fourth-payment-day'>第四次付息日：</label>
+            </div>
+
+        </form>
+    </div>
+
+    <div>
+        <button class="btn btn-prime" id="print-pdf">打印</button>
+    </div>
+
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script>
+        require('../../renderer-process/js/new-loan-preview.js')
+    </script>
+</body>
+
+</html>
