@@ -103,7 +103,7 @@ function checkContractNumber(bn) {
   if(contraIdSearchBox.value == "") {
     return false
   }
-  return bn.contractNumber.search(contraIdSearchBox.value) != -1
+  return bn._id.search(contraIdSearchBox.value) != -1
 }
 
 contraIdSearchBox.addEventListener("input",()=>{
