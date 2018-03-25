@@ -9,6 +9,8 @@ ipcRenderer.on('get-temp-data', (event, arg) => {
     loadData(arg)
 })
 
+
+// 新建页面需要传值
 function loadData(loan) {
     const name = document.getElementById("name")
     const idNumber = document.getElementById("id-number")
@@ -41,11 +43,11 @@ function loadData(loan) {
     dailyInterest.value = (actualInterest.value / 360).toFixed(2)
 
     var paymentDates = ['3-15', '6-15', '9-15', '12-15']
-    firstPaymentDay.innerHTML = "第一次付息日：" + paymentDates[loan.firstIndex] + " " + loan.firstPayment + "￥"
+    firstPaymentDay.innerHTML = "第一次付息日：" + paymentDates[loan.firstDay] + " " + loan.firstPayment + "￥"
     var restInterest = loan.restPayment
-    secondPaymentDay.innerHTML = "第二次付息日：" + paymentDates[++loan.firstIndex % 4] + " " + restInterest + "￥"
-    thirdPaymentDay.innerHTML = "第三次付息日：" + paymentDates[++loan.firstIndex % 4] + " " + restInterest + "￥"
-    fourthPaymentDay.innerHTML = "第四次付息日：" + paymentDates[++loan.firstIndex % 4] + " " + restInterest + "￥"
+    secondPaymentDay.innerHTML = "第二次付息日：" + paymentDates[++loan.secondDay % 4] + " " + restInterest + "￥"
+    thirdPaymentDay.innerHTML = "第三次付息日：" + paymentDates[++loan.thirdDay % 4] + " " + restInterest + "￥"
+    fourthPaymentDay.innerHTML = "第四次付息日：" + paymentDates[++loan.fourthDay % 4] + " " + restInterest + "￥"
 
 }
 

@@ -143,9 +143,8 @@ function isValidTime(startTime, endTime) {
     }
 }
 
-startTime.addEventListener('change', () => {
+startTime.addEventListener('input', () => {
     calculatePaymentDate()
-    console.log(Date(startTime.value))
 })
 
 endTime.addEventListener('change', () => {
@@ -166,16 +165,38 @@ tax.addEventListener('input', () => {
 
 function calculatePaymentDate() {
     var paymentDates = ['3-15', '6-15', '9-15', '12-15']
+    var year = startTime.value.slice(0,4)
     for (d in paymentDates) {
-        if (moment(startTime.value).isBefore(moment(paymentDates[d], 'MM-DD'))) {
+        if (moment(startTime.value).isBefore(moment(year+"-"+paymentDates[d], 'YYYY-MM-DD'))) {
             dailyInterest.value = (actualInterest.value / 360).toFixed(2)
             var firstPay = (dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)).toFixed(2)
-            firstPaymentDay.innerHTML = "第一次付息日：" + paymentDates[d] + " " + firstPay + "￥"
-            loan.firstIndex = d
+            loan.firstDay = year+"-"+ paymentDates[d]
+            if(++d == 4) {
+                ++year
+                d = 0
+                
+            }
+            loan.secondDay = year+"-"+ paymentDates[d]
+
+            if(++d == 4) {
+                ++year
+                d = 0
+                
+            }
+            loan.thirdDay = year+"-"+ paymentDates[d]
+
+            if(++d == 4) {
+                ++year
+                d = 0
+                
+            }
+            loan.fourthDay = year+"-"+ paymentDates[d]
+
+            firstPaymentDay.innerHTML = "第一次付息日：" + loan.firstDay + " " + firstPay + "￥"
             var restInterest = ((actualInterest.value - dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)) / 3).toFixed(2)
-            secondPaymentDay.innerHTML = "第二次付息日：" + paymentDates[++d % 4] + " " + restInterest + "￥"
-            thirdPaymentDay.innerHTML = "第三次付息日：" + paymentDates[++d % 4] + " " + restInterest + "￥"
-            fourthPaymentDay.innerHTML = "第四次付息日：" + paymentDates[++d % 4] + " " + restInterest + "￥"
+            secondPaymentDay.innerHTML = "第二次付息日：" + loan.secondDay + " " + restInterest + "￥"
+            thirdPaymentDay.innerHTML = "第三次付息日：" + loan.thirdDay + " " + restInterest + "￥"
+            fourthPaymentDay.innerHTML = "第四次付息日：" + loan.fourthDay + " " + restInterest + "￥"
             loan.firstPayment = firstPay
             loan.restPayment = ((actualInterest.value - firstPay) / 3).toFixed(2)
             break
