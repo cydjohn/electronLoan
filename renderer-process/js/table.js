@@ -94,6 +94,16 @@ printPreview.addEventListener('click', (event) => {
   win.show()
 })
 
+// 删除
+
+const deleteRecorde = document.getElementById('delete')
+deleteRecorde.addEventListener('click', (event) => {
+  const modalPath = path.join('file://', __dirname, '../../sections/windows/delete.html')
+  let win = new BrowserWindow({ width: 600, height: 400 })
+  win.on('close', () => { win = null })
+  win.loadURL(modalPath)
+  win.show()
+})
 
 // 借款日期筛选
 

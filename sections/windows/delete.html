@@ -9,11 +9,11 @@
         <div class="container">
             <label>请输入合同编号：</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="contract-number">
             </div>
         </div>
-        <div >
-            <button class="btn btn-danger" id="print-pdf">删除</button>
+        <div class="container">
+            <button class="btn btn-danger" id="delete-record">删除</button>
         </div>
     </div>
     <style>
@@ -27,7 +27,7 @@
     </style>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script>
-        require('../../renderer-process/js/print-preview.js')
+        require('../../renderer-process/js/delete.js')
     </script>
 </body>
 
