@@ -192,11 +192,11 @@ function calculatePaymentDate() {
             }
             loan.fourthDay = year+"-"+ paymentDates[d]
 
-            firstPaymentDay.innerHTML = "第一次付息日：" + loan.firstDay + " " + firstPay + "￥"
+            firstPaymentDay.value =  loan.firstDay + " " + firstPay + "￥"
             var restInterest = ((actualInterest.value - dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)) / 3).toFixed(2)
-            secondPaymentDay.innerHTML = "第二次付息日：" + loan.secondDay + " " + restInterest + "￥"
-            thirdPaymentDay.innerHTML = "第三次付息日：" + loan.thirdDay + " " + restInterest + "￥"
-            fourthPaymentDay.innerHTML = "第四次付息日：" + loan.fourthDay + " " + restInterest + "￥"
+            secondPaymentDay.value =  loan.secondDay + " " + restInterest + "￥"
+            thirdPaymentDay.value =  loan.thirdDay + " " + restInterest + "￥"
+            fourthPaymentDay.value =  loan.fourthDay + " " + restInterest + "￥"
             loan.firstPayment = firstPay
             loan.restPayment = ((actualInterest.value - firstPay) / 3).toFixed(2)
             break
