@@ -72,8 +72,6 @@ function calculateSum() {
   document.getElementById("second-interest-sum").innerHTML = secondInterestSum
   document.getElementById("third-interest-sum").innerHTML = thirdInterestSum
   document.getElementById("fourth-interest-sum").innerHTML = fourthInterestSum
-
-
 }
 
 
