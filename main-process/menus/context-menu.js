@@ -7,9 +7,9 @@ const {
 } = require('electron')
 
 const menu = new Menu()
-menu.append(new MenuItem({ label: 'Hello' }))
-menu.append(new MenuItem({ type: 'separator' }))
-menu.append(new MenuItem({ label: 'Electron', type: 'checkbox', checked: true }))
+// menu.append(new MenuItem({ label: 'Hello' }))
+// menu.append(new MenuItem({ type: 'separator' }))
+// menu.append(new MenuItem({ label: 'Electron', type: 'checkbox', checked: true }))
 
 app.on('browser-window-created', (event, win) => {
   win.webContents.on('context-menu', (e, params) => {
