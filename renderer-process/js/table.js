@@ -67,7 +67,6 @@ idSearchBox.addEventListener("input",()=>{
 })
 
 // 搜索合同号
-
 const contraIdSearchBox = document.getElementById("contra-id")
 
 function checkContractNumber(bn) {
@@ -86,7 +85,6 @@ contraIdSearchBox.addEventListener("input",()=>{
 
 // 打印预览
 const printPreview = document.getElementById('print-preview')
-
 printPreview.addEventListener('click', (event) => {
   ipcRenderer.send('pass-print-value',tableData)
   const modalPath = path.join('file://', __dirname, '../../sections/windows/print-preview.html')
@@ -96,6 +94,15 @@ printPreview.addEventListener('click', (event) => {
   win.show()
 })
 
+
+// 借款日期筛选
+
+
+
+// 还款日期筛选
+
+
+// 付息日筛选
 
 
 
