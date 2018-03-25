@@ -12,7 +12,6 @@ let tableData = []
 let tempData = {}
 
 ipcMain.on('getMsg', (event, arg) => {
-
     db.insert(arg, function (err, newDoc) {   // Callback is optional
         // newDoc is the newly inserted document, including its _id
         // newDoc has no key called notToBeSaved since its value was undefined
@@ -53,6 +52,13 @@ ipcMain.on('request-delete-contract', (event, cid) => {
     db.remove({ _id: cid }, {}, function (err, numRemoved) {
         // numRemoved = 1
         event.sender.send('delete-info', numRemoved)
-      });
+        if (numRemoved == 1) {
+            var arr = BrowserWindow.getAllWindows();
+            for (var i = 0; i < arr.length; i++) {
+                const toWindow = arr[i];
+                toWindow.webContents.send('delete-contract-number', cid);
+            }
+        }
+    });
 })
 
