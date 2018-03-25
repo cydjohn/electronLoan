@@ -47,6 +47,33 @@ function loadData() {
       "<td>" + tableData[d].restPayment + "</td>" +
       "</tr>"
   }
+  calculateSum()
+}
+
+function calculateSum() {
+  var loanSum = 0, interestSum = 0, taxSum = 0, acturalInterestSum = 0, firstInterestSum = 0,
+    secondInterestSum = 0, thirdInterestSum = 0, fourthInterestSum = 0
+  for (i in tableData) {
+    loanSum += parseFloat(tableData[i].amount)
+    interestSum += parseFloat(tableData[i].interest)
+    taxSum += parseFloat(tableData[i].tax)
+    acturalInterestSum += parseFloat(tableData[i].actualInterest)
+    firstInterestSum += parseFloat(tableData[i].firstPayment)
+    secondInterestSum += parseFloat(tableData[i].restPayment)
+    thirdInterestSum += parseFloat(tableData[i].restPayment)
+    fourthInterestSum += parseFloat(tableData[i].restPayment)
+  }
+
+  document.getElementById("loan-sum").innerHTML = loanSum
+  document.getElementById("interest-sum").innerHTML = interestSum
+  document.getElementById("tax-sum").innerHTML = taxSum
+  document.getElementById("actural-interest-sum").innerHTML = acturalInterestSum
+  document.getElementById("first-interest-sum").innerHTML = firstInterestSum
+  document.getElementById("second-interest-sum").innerHTML = secondInterestSum
+  document.getElementById("third-interest-sum").innerHTML = thirdInterestSum
+  document.getElementById("fourth-interest-sum").innerHTML = fourthInterestSum
+
+
 }
 
 
@@ -113,7 +140,7 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
   tableData = tableData.filter(function (item) {
     return item._id !== arg
   })
-  console.log("delete "+ arg)
+  console.log("delete " + arg)
   loadData()
 })
 
