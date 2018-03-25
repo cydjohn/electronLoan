@@ -42,11 +42,11 @@ function loadData(loan) {
     actualInterest.value = loan.actualInterest
     dailyInterest.value = (actualInterest.value / 360).toFixed(2)
 
-    firstPaymentDay.innerHTML = loan.firstDay + " " + loan.firstPayment + "￥"
+    firstPaymentDay.value = loan.firstDay + " " + loan.firstPayment + "￥"
     var restInterest = loan.restPayment
-    secondPaymentDay.innerHTML = loan.secondDay + " " + restInterest + "￥"
-    thirdPaymentDay.innerHTML = loan.thirdDay + " " + restInterest + "￥"
-    fourthPaymentDay.innerHTML = loan.fourthDay + " " + restInterest + "￥"
+    secondPaymentDay.value = loan.secondDay + " " + restInterest + "￥"
+    thirdPaymentDay.value = loan.thirdDay + " " + restInterest + "￥"
+    fourthPaymentDay.value = loan.fourthDay + " " + restInterest + "￥"
 
 }
 

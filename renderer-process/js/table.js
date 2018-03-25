@@ -159,7 +159,6 @@ function checkInterestDate(idn) {
 }
 
 interestDate.addEventListener("input", (event, arg) => {
-  console.log("asdfasdfklhasldkfh")
   tableData = allData.filter(checkInterestDate);
   loadData()
 })
