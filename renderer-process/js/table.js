@@ -34,7 +34,7 @@ function loadData() {
       "<td>" + tableData[d].idNumber + "</td>" +
       "<td>" + tableData[d].bankAccount + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
-      "<td>" + "2018-06-15" + "</td>" +
+      "<td>" + tableData[d].firstDay + "</td>" +
       "<td>" + tableData[d].endTime + "</td>" +
       "<td>" + tableData[d].amount + "</td>" +
       "<td>" + tableData[d].interestRate + "</td>" +
@@ -119,13 +119,50 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
 
 
 // 借款日期筛选
+const startDate = document.getElementById('datetimepicker1')
+function checkStartDate(idn) {
+  if (startDate.value == "") {
+    return false
+  }
+  return idn.startTime.search(startDate.value) != -1
+}
 
+startDate.addEventListener("input", (event, arg) => {
+  tableData = allData.filter(checkStartDate);
+  loadData()
+})
 
 
 // 还款日期筛选
+const endDate = document.getElementById('datetimepicker3')
+function checkEndDate(idn) {
+  if (endDate.value == "") {
+    return false
+  }
+  return idn.endTime.search(endDate.value) != -1
+}
+
+endDate.addEventListener("input", (event, arg) => {
+  tableData = allData.filter(checkEndDate);
+  loadData()
+})
 
 
 // 付息日筛选
+const interestDate = document.getElementById('datetimepicker2')
+function checkInterestDate(idn) {
+  if (interestDate.value == "") {
+    return false
+  }
+  console.log(interestDate.value)
+  return idn.firstDay.search(interestDate.value) != -1
+}
+
+interestDate.addEventListener("input", (event, arg) => {
+  console.log("asdfasdfklhasldkfh")
+  tableData = allData.filter(checkInterestDate);
+  loadData()
+})
 
 
 

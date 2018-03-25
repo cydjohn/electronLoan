@@ -164,7 +164,7 @@ tax.addEventListener('input', () => {
 
 
 function calculatePaymentDate() {
-    var paymentDates = ['3-15', '6-15', '9-15', '12-15']
+    var paymentDates = ['03-15', '06-15', '09-15', '12-15']
     var year = startTime.value.slice(0,4)
     for (d in paymentDates) {
         if (moment(startTime.value).isBefore(moment(year+"-"+paymentDates[d], 'YYYY-MM-DD'))) {

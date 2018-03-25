@@ -41,12 +41,9 @@ ipcMain.on('get-print-value', (event, arg) => {
     event.sender.send('print-data', tableData)
 })
 
-
-
 ipcMain.on('request-temp-data', (event, arg) => {
     event.sender.send('get-temp-data', tempData)
 })
-
 
 ipcMain.on('request-delete-contract', (event, cid) => {
     db.remove({ _id: cid }, {}, function (err, numRemoved) {
