@@ -52,6 +52,8 @@
     "electron-settings": "^3.0.7",
     "electron-shortcut-normalizer": "^1.0.0",
     "glob": "^7.1.0",
+    "grunt": "^1.0.2",
+    "grunt-electron-installer": "^2.1.0",
     "highlight.js": "^9.3.0",
     "jquery": "^3.3.1",
     "moment": "^2.21.0",

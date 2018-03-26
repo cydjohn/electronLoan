@@ -32,7 +32,7 @@ exports.initialize = () => {
     exports.updateMenu()
   })
 
-  autoUpdater.setFeedURL(`https://electron-api-demos.githubapp.com/updates?version=${app.getVersion()}`)
+  autoUpdater.setFeedURL(`https://electron-api-de.githubapp.com/updates?version=${app.getVersion()}`)
   autoUpdater.checkForUpdates()
 }
 
