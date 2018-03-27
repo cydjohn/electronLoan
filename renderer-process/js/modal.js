@@ -1,6 +1,6 @@
 // import { start } from 'repl';
 
-const { ipcRenderer,remote} = require('electron');
+const { ipcRenderer, remote } = require('electron');
 var moment = require('moment');
 const path = require('path')
 const { BrowserWindow } = require('electron').remote
@@ -26,6 +26,8 @@ const fourthPaymentDay = document.getElementById('fourth-payment-day')
 let canSubmit = false
 var loan = {}
 
+
+
 btn.addEventListener('click', () => {
     if (canSubmit) {
 
@@ -49,8 +51,7 @@ btn.addEventListener('click', () => {
         win.show()
 
         ipcRenderer.send('getMsg', loan)
-
-        remote.getCurrentWindow().reload();
+        resetPage()
     }
 })
 
@@ -170,38 +171,38 @@ tax.addEventListener('input', () => {
 
 function calculatePaymentDate() {
     var paymentDates = ['03-15', '06-15', '09-15', '12-15']
-    var year = startTime.value.slice(0,4)
+    var year = startTime.value.slice(0, 4)
     for (d in paymentDates) {
-        if (moment(startTime.value).isBefore(moment(year+"-"+paymentDates[d], 'YYYY-MM-DD'))) {
+        if (moment(startTime.value).isBefore(moment(year + "-" + paymentDates[d], 'YYYY-MM-DD'))) {
             dailyInterest.value = (actualInterest.value / 360).toFixed(2)
             var firstPay = (dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)).toFixed(2)
-            loan.firstDay = year+"-"+ paymentDates[d]
-            if(++d == 4) {
+            loan.firstDay = year + "-" + paymentDates[d]
+            if (++d == 4) {
                 ++year
                 d = 0
-                
-            }
-            loan.secondDay = year+"-"+ paymentDates[d]
 
-            if(++d == 4) {
+            }
+            loan.secondDay = year + "-" + paymentDates[d]
+
+            if (++d == 4) {
                 ++year
                 d = 0
-                
-            }
-            loan.thirdDay = year+"-"+ paymentDates[d]
 
-            if(++d == 4) {
+            }
+            loan.thirdDay = year + "-" + paymentDates[d]
+
+            if (++d == 4) {
                 ++year
                 d = 0
-                
-            }
-            loan.fourthDay = year+"-"+ paymentDates[d]
 
-            firstPaymentDay.value =  loan.firstDay + " " + firstPay + "￥"
+            }
+            loan.fourthDay = year + "-" + paymentDates[d]
+
+            firstPaymentDay.value = loan.firstDay + " " + firstPay + "￥"
             var restInterest = ((actualInterest.value - dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)) / 3).toFixed(2)
-            secondPaymentDay.value =  loan.secondDay + " " + restInterest + "￥"
-            thirdPaymentDay.value =  loan.thirdDay + " " + restInterest + "￥"
-            fourthPaymentDay.value =  loan.fourthDay + " " + restInterest + "￥"
+            secondPaymentDay.value = loan.secondDay + " " + restInterest + "￥"
+            thirdPaymentDay.value = loan.thirdDay + " " + restInterest + "￥"
+            fourthPaymentDay.value = loan.fourthDay + " " + restInterest + "￥"
             loan.firstPayment = firstPay
             loan.restPayment = ((actualInterest.value - firstPay) / 3).toFixed(2)
             break
@@ -209,3 +210,23 @@ function calculatePaymentDate() {
     }
 }
 
+
+
+function resetPage() {
+    document.getElementById("name").value = ""
+    document.getElementById("id-number").value = ""
+    document.getElementById("bank-account").value = ""
+    document.getElementById("amount").value = ""
+    document.getElementById("start-time").value = ""
+    document.getElementById("end-time").value = ""
+
+    document.getElementById('interest').value = ""
+    document.getElementById('interest-rate').value = "6.3"
+    document.getElementById('tax').value = ""
+    document.getElementById('actual-interest').value = ""
+    document.getElementById('daily-interest').value = ""
+    document.getElementById('first-payment-day').value = ""
+    document.getElementById('second-payment-day').value = ""
+    document.getElementById('third-payment-day').value = ""
+    document.getElementById('fourth-payment-day').value = ""
+}
