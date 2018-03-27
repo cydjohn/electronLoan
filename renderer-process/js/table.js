@@ -67,11 +67,11 @@ function calculateSum() {
   document.getElementById("loan-sum").innerHTML = loanSum
   document.getElementById("interest-sum").innerHTML = interestSum
   document.getElementById("tax-sum").innerHTML = taxSum
-  document.getElementById("actural-interest-sum").innerHTML = acturalInterestSum
-  document.getElementById("first-interest-sum").innerHTML = firstInterestSum
-  document.getElementById("second-interest-sum").innerHTML = secondInterestSum
-  document.getElementById("third-interest-sum").innerHTML = thirdInterestSum
-  document.getElementById("fourth-interest-sum").innerHTML = fourthInterestSum
+  document.getElementById("actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
+  document.getElementById("first-interest-sum").innerHTML = firstInterestSum.toFixed(2)
+  document.getElementById("second-interest-sum").innerHTML = secondInterestSum.toFixed(2)
+  document.getElementById("third-interest-sum").innerHTML = thirdInterestSum.toFixed(2)
+  document.getElementById("fourth-interest-sum").innerHTML = fourthInterestSum.toFixed(2)
 }
 
 
