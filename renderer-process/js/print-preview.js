@@ -24,6 +24,7 @@ function loadData() {
       "<td>" + tableData[d].bankAccount + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
       "<td>" + tableData[d].actualInterest + "</td>" +
+      "<td>" + tableData[d].amount + "</td>" +
       "</tr>"
   }
 }
