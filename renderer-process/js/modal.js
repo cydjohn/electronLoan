@@ -1,6 +1,6 @@
 // import { start } from 'repl';
 
-const { ipcRenderer } = require('electron');
+const { ipcRenderer,remote} = require('electron');
 var moment = require('moment');
 const path = require('path')
 const { BrowserWindow } = require('electron').remote
@@ -25,6 +25,7 @@ const fourthPaymentDay = document.getElementById('fourth-payment-day')
 
 let canSubmit = false
 var loan = {}
+
 btn.addEventListener('click', () => {
     if (canSubmit) {
 
@@ -48,8 +49,12 @@ btn.addEventListener('click', () => {
         win.show()
 
         ipcRenderer.send('getMsg', loan)
+
+        remote.getCurrentWindow().reload();
     }
 })
+
+
 
 
 
