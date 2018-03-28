@@ -29,68 +29,70 @@ let template = [{
     accelerator: 'CmdOrCtrl+A',
     role: 'selectall'
   }]
-}, {
-  label: 'View',
-  submenu: [{
-    label: 'Reload',
-    accelerator: 'CmdOrCtrl+R',
-    click: (item, focusedWindow) => {
-      if (focusedWindow) {
-        // on reload, start fresh and close any old
-        // open secondary windows
-        if (focusedWindow.id === 1) {
-          BrowserWindow.getAllWindows().forEach(win => {
-            if (win.id > 1) win.close()
-          })
-        }
-        focusedWindow.reload()
-      }
-    }
-  }, {
-    label: 'Toggle Full Screen',
-    accelerator: (() => {
-      if (process.platform === 'darwin') {
-        return 'Ctrl+Command+F'
-      } else {
-        return 'F11'
-      }
-    })(),
-    click: (item, focusedWindow) => {
-      if (focusedWindow) {
-        focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
-      }
-    }
-  }, {
-    label: 'Toggle Developer Tools',
-    accelerator: (() => {
-      if (process.platform === 'darwin') {
-        return 'Alt+Command+I'
-      } else {
-        return 'Ctrl+Shift+I'
-      }
-    })(),
-    click: (item, focusedWindow) => {
-      if (focusedWindow) {
-        focusedWindow.toggleDevTools()
-      }
-    }
-  }, {
-    type: 'separator'
-  }, {
-    label: 'App Menu Demo',
-    click: function (item, focusedWindow) {
-      if (focusedWindow) {
-        const options = {
-          type: 'info',
-          title: 'Application Menu Demo',
-          buttons: ['Ok'],
-          message: 'This demo is for the Menu section, showing how to create a clickable menu item in the application menu.'
-        }
-        dialog.showMessageBox(focusedWindow, options, function () {})
-      }
-    }
-  }]
-}, {
+}, 
+// {
+//   label: 'View',
+//   submenu: [{
+//     label: 'Reload',
+//     accelerator: 'CmdOrCtrl+R',
+//     click: (item, focusedWindow) => {
+//       if (focusedWindow) {
+//         // on reload, start fresh and close any old
+//         // open secondary windows
+//         if (focusedWindow.id === 1) {
+//           BrowserWindow.getAllWindows().forEach(win => {
+//             if (win.id > 1) win.close()
+//           })
+//         }
+//         focusedWindow.reload()
+//       }
+//     }
+//   }, {
+//     label: 'Toggle Full Screen',
+//     accelerator: (() => {
+//       if (process.platform === 'darwin') {
+//         return 'Ctrl+Command+F'
+//       } else {
+//         return 'F11'
+//       }
+//     })(),
+//     click: (item, focusedWindow) => {
+//       if (focusedWindow) {
+//         focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
+//       }
+//     }
+//   }, {
+//     label: 'Toggle Developer Tools',
+//     accelerator: (() => {
+//       if (process.platform === 'darwin') {
+//         return 'Alt+Command+I'
+//       } else {
+//         return 'Ctrl+Shift+I'
+//       }
+//     })(),
+//     click: (item, focusedWindow) => {
+//       if (focusedWindow) {
+//         focusedWindow.toggleDevTools()
+//       }
+//     }
+//   }, {
+//     type: 'separator'
+//   }, {
+//     label: 'App Menu Demo',
+//     click: function (item, focusedWindow) {
+//       if (focusedWindow) {
+//         const options = {
+//           type: 'info',
+//           title: 'Application Menu Demo',
+//           buttons: ['Ok'],
+//           message: 'This demo is for the Menu section, showing how to create a clickable menu item in the application menu.'
+//         }
+//         dialog.showMessageBox(focusedWindow, options, function () {})
+//       }
+//     }
+//   }]
+// }, 
+{
   label: 'Window',
   role: 'window',
   submenu: [{
@@ -219,10 +221,10 @@ if (process.platform === 'darwin') {
   addUpdateMenuItems(template[0].submenu, 1)
 }
 
-if (process.platform === 'win32') {
-  const helpMenu = template[template.length - 1].submenu
-  addUpdateMenuItems(helpMenu, 0)
-}
+// if (process.platform === 'win32') {
+//   const helpMenu = template[template.length - 1].submenu
+//   addUpdateMenuItems(helpMenu, 0)
+// }
 
 app.on('ready', () => {
   const menu = Menu.buildFromTemplate(template)
