@@ -60,3 +60,4 @@ typings/
 out/
 db/
 windows32/
+dist/
