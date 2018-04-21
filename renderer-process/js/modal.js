@@ -77,14 +77,15 @@ idNumber.addEventListener('change', () => {
 
 // 银行卡验证
 function isBankCard(str) {
-    var regex = /^(6222)\d{12}$/;
-    if (regex.test(str)) {
-        return true;
-    }
-    else {
-        alert("银行卡信息输入不合法");
-        return false;
-    }
+    // var regex = /^(6222)\d{12}$/;
+    // if (regex.test(str)) {
+    //     return true;
+    // }
+    // else {
+    //     alert("银行卡信息输入不合法");
+    //     return false;
+    // }
+    return true;
 }
 
 bankAccount.addEventListener('change', () => {
