@@ -32,7 +32,9 @@ exports.initialize = () => {
     exports.updateMenu()
   })
 
-  autoUpdater.setFeedURL(`https://electron-api-de.githubapp.com/updates?version=${app.getVersion()}`)
+  const server = 'https://hazel-server-tsxinwgmcy.now.sh/'
+  const feed = `${server}/update/${process.platform}/${app.getVersion()}`
+  autoUpdater.setFeedURL(feed)
   autoUpdater.checkForUpdates()
 }
 

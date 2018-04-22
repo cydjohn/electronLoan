@@ -9,6 +9,8 @@ var Datastore = require('nedb')
 var userData = app.getAppPath('userData');
 db = new Datastore({ filename: userData+'/db/persons.db'});
 
+// db = new Datastore({ filename: '~/Desktop/persons.db'});
+
 if (process.mas) app.setName('借款系统')
 
 let mainWindow = null
