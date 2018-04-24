@@ -6,7 +6,8 @@ const path = require('path')
 const request = require('request')
 const util = require('util')
 
-const token = process.env.ELECTRON_API_DEMO_GITHUB_TOKEN
+// const token = process.env.ELECTRON_API_DEMO_GITHUB_TOKEN
+const token = '472828538d931b55e56678df82873a1e113c19c3'
 const version = require('../package').version
 
 checkToken()
