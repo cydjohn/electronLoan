@@ -70,21 +70,21 @@ const sectionId = settings.get('activeSectionButtonId')
 const passwordMess = document.getElementById('wrongPass')
 passwordMess.hidden = true
 
-let canLogin = false
-let pass = document.getElementById('pass')
-const loginButton = document.getElementById('get-started')
-loginButton.addEventListener('click', () => {
-  if (pass.value == "123456") {
-    canLogin = true
-    document.querySelector('#about-modal').remove('is-shown')
-    showMainContent()
-    const section = document.getElementById(sectionId)
-    if (section) section.click()
-  }
-  else {
-    passwordMess.hidden = false
-  }
-})
+let canLogin = true
+// let pass = document.getElementById('pass')
+// const loginButton = document.getElementById('get-started')
+// loginButton.addEventListener('click', () => {
+//   if (pass.value == "123456") {
+//     canLogin = true
+//     document.querySelector('#about-modal').remove('is-shown')
+//     showMainContent()
+//     const section = document.getElementById(sectionId)
+//     if (section) section.click()
+//   }
+//   else {
+//     passwordMess.hidden = false
+//   }
+// })
 
 
 if (sectionId && canLogin) {

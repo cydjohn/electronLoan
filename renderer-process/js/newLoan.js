@@ -23,6 +23,8 @@ const secondPaymentDay = document.getElementById('second-payment-day')
 const thirdPaymentDay = document.getElementById('third-payment-day')
 const fourthPaymentDay = document.getElementById('fourth-payment-day')
 
+const oneYearButton = document.getElementById('one-year-duration-button')
+
 let canSubmit = false
 var loan = {}
 
@@ -55,6 +57,13 @@ btn.addEventListener('click', () => {
     }
 })
 
+
+oneYearButton.addEventListener('click', () => { 
+    if(startTime.value != "") {
+        console.log(moment(startTime.value).add(1, 'year').format('YYYY-MM-DD'));
+        endTime.value = moment(startTime.value).add(1, 'year').format('YYYY-MM-DD');
+    }
+})
 
 
 
