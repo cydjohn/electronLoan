@@ -65,9 +65,6 @@ oneYearButton.addEventListener('click', () => {
     }
 })
 
-
-
-
 // 身份验证
 function isCardNo(card) {
     // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X  
@@ -224,6 +221,8 @@ function calculatePaymentDate() {
 
 
 function resetPage() {
+    
+    document.getElementById("contract-number").value = ""
     document.getElementById("name").value = ""
     document.getElementById("id-number").value = ""
     document.getElementById("bank-account").value = ""
