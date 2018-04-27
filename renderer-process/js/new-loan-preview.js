@@ -46,7 +46,7 @@ function loadData(loan) {
     var restInterest = loan.restPayment
     secondPaymentDay.value = loan.secondDay + " " + restInterest + "￥"
     thirdPaymentDay.value = loan.thirdDay + " " + restInterest + "￥"
-    fourthPaymentDay.value = loan.fourthDay + " " + restInterest + "￥"
+    fourthPaymentDay.value = loan.fourthDay + " " + (loan.actualInterest - 2 * restInterest - loan.firstPayment) + "￥"
 
 }
 
