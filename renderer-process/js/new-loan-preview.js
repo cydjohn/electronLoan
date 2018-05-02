@@ -48,7 +48,7 @@ function loadData(loan) {
     var restInterest = loan.restPayment
     secondPaymentDay.value = loan.secondDay + " " + restInterest + "￥"
     thirdPaymentDay.value = loan.thirdDay + " " + restInterest + "￥"
-    fourthPaymentDay.value = loan.fourthDay + " " + (loan.actualInterest - 2 * restInterest - loan.firstPayment) + "￥"
+    fourthPaymentDay.value = loan.fourthDay + " " + (loan.actualInterest - 2 * restInterest - loan.firstPayment).toFixed(2) + "￥"
 
 
     // 一开始先隐藏 确认签字
