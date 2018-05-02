@@ -4,8 +4,9 @@ const { ipcRenderer } = require('electron')
 
 
 ipcRenderer.send('request-temp-data')
+const confirmSign = document.getElementById('confirm-sign')
 ipcRenderer.on('get-temp-data', (event, arg) => {
-    console.log(arg)
+    
     loadData(arg)
 })
 
@@ -29,17 +30,18 @@ function loadData(loan) {
     const thirdPaymentDay = document.getElementById('third-payment-day')
     const fourthPaymentDay = document.getElementById('fourth-payment-day')
 
-    name.value = loan.name
-    idNumber.value = loan.idNumber
-    bankAccount.value = loan.bankAccount
-    amount.value = loan.amount
-    startTime.value = loan.startTime
-    endTime.value = loan.endTime
 
-    interest.value = loan.interest
-    interestRate.value = loan.interestRate
-    tax.value = loan.tax
-    actualInterest.value = loan.actualInterest
+    name.innerHTML = "名字：" + loan.name
+    idNumber.innerHTML = "身份证号：" + loan.idNumber
+    bankAccount.innerHTML = "银行卡号：" + loan.bankAccount
+    amount.innerHTML = "借款金额："+loan.amount
+    startTime.innerHTML = "借款时间："+loan.startTime
+    endTime.innerHTML = "还款时间：" + loan.endTime
+
+    interest.innerHTML = "应得利息：" + loan.interest
+    interestRate.innerHTML = "借款利率（%）："+ loan.interestRate
+    tax.value = "应交税费" + loan.tax
+    actualInterest.value = "实际利息" + loan.actualInterest
     dailyInterest.value = (actualInterest.value / 360).toFixed(2)
 
     firstPaymentDay.value = loan.firstDay + " " + loan.firstPayment + "￥"
@@ -48,17 +50,23 @@ function loadData(loan) {
     thirdPaymentDay.value = loan.thirdDay + " " + restInterest + "￥"
     fourthPaymentDay.value = loan.fourthDay + " " + (loan.actualInterest - 2 * restInterest - loan.firstPayment) + "￥"
 
+
+    // 一开始先隐藏 确认签字
+    confirmSign.hidden = true
 }
 
 
 const printPDFBtn = document.getElementById('print-pdf')
 
 printPDFBtn.addEventListener('click', (event) => {
+    console.log('asdfafasdfadsf')
+    confirmSign.hidden = false
     printPDFBtn.hidden = true
     ipcRenderer.send('print-to-pdf')
 })
 
 ipcRenderer.on('wrote-pdf', (event, path) => {
+    confirmSign.hidden = true
     printPDFBtn.hidden = false
 })
 
