@@ -13,6 +13,10 @@ ipcRenderer.on('get-temp-data', (event, arg) => {
 
 // 新建页面需要传值
 function loadData(loan) {
+
+
+
+    const contractNumber = document.getElementById("contract-number")
     const name = document.getElementById("name")
     const idNumber = document.getElementById("id-number")
     const bankAccount = document.getElementById("bank-account")
@@ -30,7 +34,7 @@ function loadData(loan) {
     const thirdPaymentDay = document.getElementById('third-payment-day')
     const fourthPaymentDay = document.getElementById('fourth-payment-day')
 
-
+    contractNumber.innerHTML = "合同号：" + loan.contractNumber
     name.innerHTML = "名字：" + loan.name
     idNumber.innerHTML = "身份证号：" + loan.idNumber
     bankAccount.innerHTML = "银行卡号：" + loan.bankAccount

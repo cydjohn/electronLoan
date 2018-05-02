@@ -29,7 +29,7 @@ function loadData() {
     document.getElementById('data').innerHTML +=
       "<tr>" +
       "<td>" + (parseInt(d) + 1) + "</td>" +
-      "<td>" + tableData[d]._id + "</td>" +
+      "<td>" + tableData[d].contractNumber + "</td>" +
       "<td>" + tableData[d].name + "</td>" +
       "<td>" + tableData[d].idNumber + "</td>" +
       "<td>" + tableData[d].bankAccount + "</td>" +

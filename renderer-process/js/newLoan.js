@@ -6,6 +6,9 @@ const path = require('path')
 const { BrowserWindow } = require('electron').remote
 
 const btn = document.getElementById("add-new")
+
+
+const contractNumber = document.getElementById('contract-number')
 const name = document.getElementById("name")
 const idNumber = document.getElementById("id-number")
 const bankAccount = document.getElementById("bank-account")
@@ -33,6 +36,7 @@ var loan = {}
 btn.addEventListener('click', () => {
     if (canSubmit) {
 
+        loan.contractNumber = contractNumber.value
         loan.name = name.value
         loan.idNumber = idNumber.value
         loan.bankAccount = bankAccount.value
