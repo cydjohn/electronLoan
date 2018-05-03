@@ -13,9 +13,6 @@ ipcRenderer.on('get-temp-data', (event, arg) => {
 
 // 新建页面需要传值
 function loadData(loan) {
-
-
-
     const contractNumber = document.getElementById("contract-number")
     const name = document.getElementById("name")
     const idNumber = document.getElementById("id-number")
