@@ -170,6 +170,7 @@ startTime.addEventListener('input', () => {
 
 endTime.addEventListener('change', () => {
     canSubmit = isValidTime(startTime.value, endTime.value)
+    calculatePaymentDate()
 })
 
 // 计算
