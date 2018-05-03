@@ -19,7 +19,7 @@ function loadData() {
   for (d in tableData) {
     document.getElementById('data').innerHTML +=
       "<tr>" +
-      "<td>" + tableData[d]._id + "</td>" +
+      "<td>" + tableData[d].contractNumber + "</td>" +
       "<td>" + tableData[d].name + "</td>" +
       "<td>" + tableData[d].bankAccount + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
