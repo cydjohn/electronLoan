@@ -6,7 +6,7 @@ const { ipcRenderer } = require('electron')
 ipcRenderer.send('request-temp-data')
 const confirmSign = document.getElementById('confirm-sign')
 ipcRenderer.on('get-temp-data', (event, arg) => {
-    
+
     loadData(arg)
 })
 
@@ -17,6 +17,8 @@ function loadData(loan) {
     const name = document.getElementById("name")
     const idNumber = document.getElementById("id-number")
     const bankAccount = document.getElementById("bank-account")
+    const bankName = document.getElementById("bank-name")
+    const openingBank = document.getElementById("opening-bank")
     const amount = document.getElementById("amount")
     const startTime = document.getElementById("start-time")
     const endTime = document.getElementById("end-time")
@@ -35,15 +37,17 @@ function loadData(loan) {
     name.innerHTML = "名字：" + loan.name
     idNumber.innerHTML = "身份证号：" + loan.idNumber
     bankAccount.innerHTML = "银行卡号：" + loan.bankAccount
-    amount.innerHTML = "借款金额："+loan.amount
-    startTime.innerHTML = "借款时间："+loan.startTime
+    bankName.innerHTML = "银行名称：" + loan.bankName
+    openingBank.innerHTML = "开户行：" + loan.openingBank
+    amount.innerHTML = "借款金额：" + loan.amount
+    startTime.innerHTML = "借款时间：" + loan.startTime
     endTime.innerHTML = "还款时间：" + loan.endTime
 
     interest.innerHTML = "应得利息：" + loan.interest
-    interestRate.innerHTML = "借款利率（%）："+ loan.interestRate
-    tax.value = "应交税费" + loan.tax
-    actualInterest.value = "实际利息" + loan.actualInterest
-    dailyInterest.value = (actualInterest.value / 360).toFixed(2)
+    interestRate.innerHTML = "借款利率（%）：" + loan.interestRate
+    tax.innerHTML = "应交税费：" + loan.tax
+    actualInterest.innerHTML = "实际利息：" + loan.actualInterest
+    dailyInterest.value = (loan.actualInterest / 360).toFixed(2)
 
     firstPaymentDay.value = loan.firstDay + " " + loan.firstPayment + "￥"
     var restInterest = loan.restPayment
