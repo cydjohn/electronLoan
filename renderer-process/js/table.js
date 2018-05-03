@@ -22,6 +22,16 @@ ipcRenderer.on('add-new-loan', (event, arg) => {
   document.getElementById('button-table').click()
 })
 
+ipcRenderer.on('delete-contract-number', (event, arg) => {
+  allData = allData.filter(function (item) {
+    return item.contractNumber !== arg
+  })
+  tableData = tableData.filter(function (item) {
+    return item.contractNumber !== arg
+  })
+  console.log("delete " + arg)
+  loadData()
+})
 
 function loadData() {
   document.getElementById('data').innerHTML = ""
@@ -128,18 +138,6 @@ deleteRecorde.addEventListener('click', (event) => {
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
   win.show()
-})
-
-
-ipcRenderer.on('delete-contract-number', (event, arg) => {
-  allData = allData.filter(function (item) {
-    return item._id !== arg
-  })
-  tableData = tableData.filter(function (item) {
-    return item._id !== arg
-  })
-  console.log("delete " + arg)
-  loadData()
 })
 
 

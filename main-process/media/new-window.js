@@ -47,7 +47,7 @@ ipcMain.on('request-temp-data', (event, arg) => {
 })
 
 ipcMain.on('request-delete-contract', (event, cid) => {
-    db.remove({ _id: cid }, {}, function (err, numRemoved) {
+    db.remove({ contractNumber: cid }, {}, function (err, numRemoved) {
         // numRemoved = 1
         event.sender.send('delete-info', numRemoved)
         if (numRemoved == 1) {
