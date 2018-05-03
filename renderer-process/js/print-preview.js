@@ -19,12 +19,25 @@ function loadData() {
   for (d in tableData) {
     document.getElementById('data').innerHTML +=
       "<tr>" +
+      "<td>" + (parseInt(d) + 1) + "</td>" +
       "<td>" + tableData[d].contractNumber + "</td>" +
       "<td>" + tableData[d].name + "</td>" +
+      "<td>" + tableData[d].idNumber + "</td>" +
       "<td>" + tableData[d].bankAccount + "</td>" +
+      "<td>" + tableData[d].bankName + "</td>" +
+      "<td>" + tableData[d].openingBank + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
-      "<td>" + tableData[d].actualInterest + "</td>" +
+      "<td>" + tableData[d].firstDay + "</td>" +
+      "<td>" + tableData[d].endTime + "</td>" +
       "<td>" + tableData[d].amount + "</td>" +
+      "<td>" + tableData[d].interestRate + "</td>" +
+      "<td>" + tableData[d].interest + "</td>" +
+      "<td>" + tableData[d].tax + "</td>" +
+      "<td>" + tableData[d].actualInterest + "</td>" +
+      "<td>" + tableData[d].firstPayment + "</td>" +
+      "<td>" + tableData[d].restPayment + "</td>" +
+      "<td>" + tableData[d].restPayment + "</td>" +
+      "<td>" + tableData[d].restPayment + "</td>" +
       "</tr>"
   }
 }

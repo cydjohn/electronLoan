@@ -149,7 +149,7 @@ function checkStartDate(idn) {
   if (startDate.value == "") {
     return false
   }
-  return idn.startTime.search(startDate.value) != -1
+  return idn.startTime.search(startDate.value.slice(0,7)) != -1
 }
 
 startDate.addEventListener("input", (event, arg) => {
@@ -164,7 +164,7 @@ function checkEndDate(idn) {
   if (endDate.value == "") {
     return false
   }
-  return idn.endTime.search(endDate.value) != -1
+  return idn.endTime.search(endDate.value.slice(0,7)) != -1
 }
 
 endDate.addEventListener("input", (event, arg) => {
@@ -179,8 +179,7 @@ function checkInterestDate(idn) {
   if (interestDate.value == "") {
     return false
   }
-  console.log(interestDate.value)
-  return idn.firstDay.search(interestDate.value) != -1
+  return idn.firstDay.search(interestDate.value.slice(0,7)) != -1
 }
 
 interestDate.addEventListener("input", (event, arg) => {
