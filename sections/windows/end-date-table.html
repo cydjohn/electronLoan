@@ -9,33 +9,28 @@
                     border: 1px solid hsl(116, 30%, 36%);
                     border-radius: 4px;
                     box-sizing: border-box;
-                }
+                } */
 
                 .input-group {
                     float: right;
                 }
-
-                .delete-button {
-                    color: red;
-                } */
-
             </style>
 
+            <div class="container">
+                <div class="row col-lg-12">
 
-            <div class="demo-wrapper">
+                    <div class="input-group col-lg-4">
+                        <span>借款时间:</span>
+                        <input type='date' class="form-control" placeholder="借款时间" id='datetimepicker1' />
+                    </div>
 
-                <div class="input-group">
-                    <span>借款时间:</span>
-                    <input type='date' class="form-control" placeholder="借款时间" id='datetimepicker1' />
-                </div>
-
-                <div class="input-group">
-                    <span>还款时间:</span>
-                    <input type='date' class="form-control" placeholder="还款时间" id='datetimepicker3' />
+                    <div class="input-group col-lg-4">
+                        <span>还款时间:</span>
+                        <input type='date' class="form-control" placeholder="还款时间" id='datetimepicker3' />
+                    </div>
                 </div>
             </div>
         </div>
-
         <!-- <button onclick="addRow()" class="btn btn-primary pull-left btn-sm">新增</button> -->
         <div class="demo-wrapper">
             <div class="container" style="height:600px">
@@ -43,18 +38,17 @@
                     <thead>
                         <tr>
                             <th>序号</th>
-                            <th>合同编号</th>
+
                             <th>姓名</th>
-                            <th>身份证号</th>
+
                             <th>银行卡号</th>
                             <th>银行名称</th>
                             <th>开户行</th>
                             <th>借款时间</th>
-                            <th>付息日期</th>
+
                             <th>还款日期</th>
                             <th>借款金额</th>
-                            <th>借款利率</th>
-                            <th>应得利息</th>
+
 
                         </tr>
                     </thead>
@@ -63,26 +57,27 @@
                     </tbody>
                     <tr>
                         <th>总计</th>
+
+                        <th></th>
+
                         <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+
                         <th></th>
                         <th id="loan-sum">0</th>
-                        <th></th>
-                        <th id="interest-sum">0</th>
+
 
                     </tr>
                 </table>
-                <div class="input-group">
-                    <button id="print-preview" class="demo-button">打印预览</button>
-                </div>
-                <div class="input-group">
-                    <button id="delete" class="demo-button delete-button">删除</button>
+                <div class="row col-lg-7">
+                    <div class="input-group col-lg-3">
+                        <button id="print-preview" class="btn btn-dark">打印预览</button>
+                    </div>
+                    <div class="input-group col-lg-2">
+                        <button id="delete" class="btn btn-danger">删除</button>
+                    </div>
                 </div>
             </div>
         </div>
