@@ -3,30 +3,30 @@ const path = require('path')
 const { ipcRenderer } = require('electron')
 // const newWindowBtn = document.getElementById('new')
 
-let allData = []
+let endDateAllData = []
 
-let tableData = []
+let endDateTableData = []
 // loadData()
 
 ipcRenderer.send('request-all-data')
 ipcRenderer.on('get-all-data', (event, arg) => {
-  allData = arg
+  endDateAllData = arg
 })
 
 
 function loadData() {
   document.getElementById('end-date-table-data').innerHTML = ""
-  for (d in tableData) {
+  for (d in endDateTableData) {
     document.getElementById('end-date-table-data').innerHTML +=
       "<tr>" +
       "<td>" + (parseInt(d) + 1) + "</td>" +
-      "<td>" + tableData[d].name + "</td>" +
-      "<td>" + tableData[d].bankAccount + "</td>" +
-      "<td>" + tableData[d].bankName + "</td>" +
-      "<td>" + tableData[d].openingBank + "</td>" +
-      "<td>" + tableData[d].startTime + "</td>" +
-      "<td>" + tableData[d].endTime + "</td>" +
-      "<td>" + tableData[d].amount + "</td>" +
+      "<td>" + endDateTableData[d].name + "</td>" +
+      "<td>" + endDateTableData[d].bankAccount + "</td>" +
+      "<td>" + endDateTableData[d].bankName + "</td>" +
+      "<td>" + endDateTableData[d].openingBank + "</td>" +
+      "<td>" + endDateTableData[d].startTime + "</td>" +
+      "<td>" + endDateTableData[d].endTime + "</td>" +
+      "<td>" + endDateTableData[d].amount + "</td>" +
       "</tr>"
   }
   calculateSum()
@@ -34,8 +34,8 @@ function loadData() {
 
 function calculateSum() {
   var loanSum = 0;
-  for (i in tableData) {
-    loanSum += parseFloat(tableData[i].amount)
+  for (i in endDateTableData) {
+    loanSum += parseFloat(endDateTableData[i].amount)
   }
   document.getElementById("end-date-table-loan-sum").innerHTML = loanSum
   console.log('sum',loanSum);
@@ -54,7 +54,7 @@ function checkId(idn) {
 }
 
 idSearchBox.addEventListener("input", () => {
-  tableData = allData.filter(checkId);
+  endDateTableData = endDateAllData.filter(checkId);
   loadData()
 })
 
@@ -69,7 +69,7 @@ function checkContractNumber(bn) {
 }
 
 contraIdSearchBox.addEventListener("input", () => {
-  tableData = allData.filter(checkContractNumber);
+  endDateTableData = endDateAllData.filter(checkContractNumber);
   loadData()
 })
 
@@ -78,7 +78,7 @@ contraIdSearchBox.addEventListener("input", () => {
 // 打印预览
 const printPreview = document.getElementById('end-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', tableData)
+  ipcRenderer.send('pass-print-value', endDateTableData)
   const modalPath = path.join('file://', __dirname, '../../sections/windows/end-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 800, height: 1000 })
   win.on('close', () => { win = null })
@@ -96,7 +96,7 @@ function checkStartDate(idn) {
 }
 
 startDate.addEventListener("input", (event, arg) => {
-  tableData = allData.filter(checkStartDate);
+  endDateTableData = endDateAllData.filter(checkStartDate);
   loadData()
 })
 
@@ -111,7 +111,7 @@ function checkEndDate(idn) {
 }
 
 endDate.addEventListener("input", (event, arg) => {
-  tableData = allData.filter(checkEndDate);
+  endDateTableData = endDateAllData.filter(checkEndDate);
   loadData()
 })
 
