@@ -38,9 +38,7 @@ function loadData() {
     document.getElementById('interest-date-table-data').innerHTML +=
       "<tr>" +
       "<td>" + (parseInt(d) + 1) + "</td>" +
-
       "<td>" + tableData[d].name + "</td>" +
-
       "<td>" + tableData[d].bankAccount + "</td>" +
       "<td>" + tableData[d].bankName + "</td>" +
       "<td>" + tableData[d].openingBank + "</td>" +
@@ -54,31 +52,23 @@ function loadData() {
 }
 
 function calculateSum() {
-  var interestSum = 0;
+  var acturalInterestSum = 0;
   for (i in tableData) {
-    interestSum += parseFloat(tableData[i].interest)
+    acturalInterestSum += parseFloat(tableData[i].actualInterest)
   }
-  document.getElementById("interest-sum").innerHTML = interestSum
-
+  document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
 }
-
 
 // 打印预览
 const printPreview = document.getElementById('interest-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
   ipcRenderer.send('pass-print-value', tableData)
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/print-preview.html')
-  let win = new BrowserWindow({ width: 800, height: 1000 })
+  const modalPath = path.join('file://', __dirname, '../../sections/windows/interest-date-table-print-preview.html')
+  let win = new BrowserWindow({ width: 1000, height: 1000 })
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
   win.show()
 })
-
-
-
-
-
-
 
 // 付息日筛选
 const interestDate = document.getElementById('interest-date-table-datetimepicker2')
