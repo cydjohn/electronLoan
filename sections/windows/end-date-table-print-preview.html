@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>打印预览</title>
+</head>
+
+<body>
+    <div class="container" style="padding:30px 0">
+        <div class="container">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="container center-block">
+            <table class="table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>银行卡号</th>
+                        <th>银行名称</th>
+                        <th>开户行</th>
+                        <th>借款时间</th>
+                        <th>还款日期</th>
+                        <th>借款金额</th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <button class="btn btn-prime" id="print-pdf">打印</button>
+        </div>
+
+    </div>
+    <style>
+        input::-ms-input-placeholder {
+            text-align: center;
+        }
+
+        input::-webkit-input-placeholder {
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script>
+        require('../../renderer-process/js/end-date-table-print-preview.js')
+    </script>
+</body>
+
+</html>

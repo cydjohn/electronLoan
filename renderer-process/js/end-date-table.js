@@ -20,14 +20,11 @@ function loadData() {
     document.getElementById('end-date-table-data').innerHTML +=
       "<tr>" +
       "<td>" + (parseInt(d) + 1) + "</td>" +
-
       "<td>" + tableData[d].name + "</td>" +
-
       "<td>" + tableData[d].bankAccount + "</td>" +
       "<td>" + tableData[d].bankName + "</td>" +
       "<td>" + tableData[d].openingBank + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
-
       "<td>" + tableData[d].endTime + "</td>" +
       "<td>" + tableData[d].amount + "</td>" +
       "</tr>"
@@ -82,7 +79,7 @@ contraIdSearchBox.addEventListener("input", () => {
 const printPreview = document.getElementById('end-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
   ipcRenderer.send('pass-print-value', tableData)
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/print-preview.html')
+  const modalPath = path.join('file://', __dirname, '../../sections/windows/end-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 800, height: 1000 })
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
