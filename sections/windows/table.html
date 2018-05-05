@@ -2,27 +2,26 @@
     <section id="table-section" class="section js-section u-category-windows">
         <div>
             <style type="text/css">
-                .form-control {
+                /* .form-control {
                     padding: 12px 20px;
                     margin: 5px 5px;
                     display: inline-block;
                     border: 1px solid hsl(116, 30%, 36%);
                     border-radius: 4px;
                     box-sizing: border-box;
-                }
+                } */
 
                 .input-group {
                     float: right;
                 }
 
-                .delete-button {
+                /* .delete-button {
                     color: red;
-                }
-                
+                }  */
             </style>
 
 
-            <div class="demo-wrapper col-lg-12 col-md-12" >
+            <div class="col-lg-12 col-md-12">
 
                 <div class="input-group col-lg-3 col-md-3">
                     <span>借款时间:</span>
@@ -40,17 +39,20 @@
                     <span>还款时间:</span>
                     <input type='date' class="form-control" placeholder="还款时间" id='datetimepicker3' />
                 </div>
+            </div>
 
+            <div class="row col-lg-12 col-md-12">
                 <div class="input-group col-lg-2 col-md-2">
                     <input type="text" class="form-control" placeholder="身份证号码" name="srch-term" id="srch-term">
                 </div>
 
-                <div class="form-group col-lg-2 col-md-2">
+                <div class="input-group col-lg-2 col-md-2">
                     <input type="text" class="form-control" placeholder="合同自编号" name="contra-id" id="contra-id">
                 </div>
-
-
             </div>
+
+
+
         </div>
         <!-- <button onclick="addRow()" class="btn btn-primary pull-left btn-sm">新增</button> -->
         <div class="demo-wrapper">
@@ -104,11 +106,13 @@
                         <th id="fourth-interest-sum">0</th>
                     </tr>
                 </table>
-                <div class="input-group">
-                    <button id="print-preview" class="demo-button">打印预览</button>
-                </div>
-                <div class="input-group">
-                    <button id="delete" class="demo-button delete-button">删除</button>
+                <div class="row col-lg-7">
+                    <div class="input-group col-lg-4">
+                        <button id="print-preview" class="btn btn-dark">打印预览</button>
+                    </div>
+                    <div class="input-group col-lg-3">
+                        <button id="delete" class="btn btn-danger">删除</button>
+                    </div>
                 </div>
             </div>
         </div>
