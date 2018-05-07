@@ -5,9 +5,8 @@ resultPromise = electronInstaller.createWindowsInstaller({
     outputDirectory: './windows32',
     authors: 'cyd',
     exe: '借款系统.exe',
-    loadingGif: path.join( 'assets', 'img', 'loading.gif'),
     noMsi: true,
-    setupExe: 'ElectronAPIDemosSetup.exe',
+    setupExe: 'ElectronLoanSetup.exe',
     setupIcon: path.join('assets', 'app-icon', 'win', 'app.ico'),
     skipUpdateIcon: true
   });
