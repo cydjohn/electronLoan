@@ -95,6 +95,9 @@ function checkId(idn) {
   if (idSearchBox.value == "") {
     return false
   }
+  else if(idSearchBox.value == "*") {
+    return true
+  }
   return idn.idNumber.search(idSearchBox.value) != -1
 }
 
