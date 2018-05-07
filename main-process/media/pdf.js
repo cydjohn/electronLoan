@@ -8,7 +8,6 @@ ipcMain.on('print-to-pdf', (event,arg) => {
   const win = BrowserWindow.fromWebContents(event.sender)
   // Use default printing options
   win.webContents.printToPDF({landscape: true ,pageSize:"A4"}, (error, data) => {
-
     if (error) throw error
     fs.writeFile(pdfPath, data, (error) => {
       if (error) throw error
