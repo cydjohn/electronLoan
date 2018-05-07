@@ -42,36 +42,9 @@ function calculateSum() {
 }
 
 
-// 搜索身份证号
 
-const idSearchBox = document.getElementById("srch-term")
 
-function checkId(idn) {
-  if (idSearchBox.value == "") {
-    return false
-  }
-  return idn.idNumber.search(idSearchBox.value) != -1
-}
 
-idSearchBox.addEventListener("input", () => {
-  endDateTableData = endDateAllData.filter(checkId);
-  loadData()
-})
-
-// 搜索合同号
-const contraIdSearchBox = document.getElementById("contra-id")
-
-function checkContractNumber(bn) {
-  if (contraIdSearchBox.value == "") {
-    return false
-  }
-  return bn._id.search(contraIdSearchBox.value) != -1
-}
-
-contraIdSearchBox.addEventListener("input", () => {
-  endDateTableData = endDateAllData.filter(checkContractNumber);
-  loadData()
-})
 
 
 
@@ -86,24 +59,11 @@ printPreview.addEventListener('click', (event) => {
   win.show()
 })
 
-// 借款日期筛选
-const startDate = document.getElementById('end-date-table-datetimepicker1')
-function checkStartDate(idn) {
-  if (startDate.value == "") {
-    return false
-  }
-  return idn.startTime.search(startDate.value) != -1
-}
-
-startDate.addEventListener("input", (event, arg) => {
-  endDateTableData = endDateAllData.filter(checkStartDate);
-  loadData()
-})
-
 
 // 还款日期筛选
 const endDate = document.getElementById('end-date-table-datetimepicker3')
 function checkEndDate(idn) {
+  console.log('adsfasdfasdfasdfa')
   if (endDate.value == "") {
     return false
   }
