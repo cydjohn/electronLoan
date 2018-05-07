@@ -14,13 +14,13 @@ ipcRenderer.on('get-all-data', (event, arg) => {
   interestDateAllData = arg
 })
 
-ipcRenderer.on('add-new-loan', (event, arg) => {
-  interestDateAllData.push(arg)
-  interestDateTableData = []
-  interestDateTableData.push(arg)
-  loadData()
-  document.getElementById('button-table').click()
-})
+// ipcRenderer.on('add-new-loan', (event, arg) => {
+//   interestDateAllData.push(arg)
+//   interestDateTableData = []
+//   interestDateTableData.push(arg)
+//   loadData()
+//   document.getElementById('button-table').click()
+// })
 
 ipcRenderer.on('delete-contract-number', (event, arg) => {
   interestDateAllData = interestDateAllData.filter(function (item) {
