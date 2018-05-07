@@ -77,6 +77,7 @@ loginButton.addEventListener('click', () => {
   if (pass.value == "123456") {
     canLogin = true
     document.querySelector('#about-modal').remove('is-shown')
+    document.getElementById('bootstrap').innerHTML = '<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">'
     showMainContent()
     const section = document.getElementById(sectionId)
     if (section) section.click()
