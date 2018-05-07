@@ -15,6 +15,7 @@ ipcRenderer.on('get-all-data', (event, arg) => {
 })
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
+  
   startDataAllData.push(arg)
   startDateTableData = []
   startDateTableData.push(arg)
