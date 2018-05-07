@@ -7,7 +7,13 @@ ipcMain.on('print-to-pdf', (event,arg) => {
   const pdfPath = path.join(os.tmpdir(), 'print.pdf')
   const win = BrowserWindow.fromWebContents(event.sender)
   // Use default printing options
-  win.webContents.printToPDF({landscape: true}, (error, data) => {
+  win.webContents.printToPDF( {
+    landscape: true,
+    marginsType: 0,
+    printBackground: false,
+    printSelectionOnly: false,
+    pageSize: 'A4',
+  }, (error, data) => {
     // win.webContents.print({landscape: true}, (error, data) => {
     if (error) throw error
     fs.writeFile(pdfPath, data, (error) => {
