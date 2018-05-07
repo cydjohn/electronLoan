@@ -3,30 +3,30 @@ const path = require('path')
 const { ipcRenderer } = require('electron')
 // const newWindowBtn = document.getElementById('new')
 
-let allData = []
+let interestDateAllData = []
 
-let tableData = []
+let interestDateTableData = []
 // loadData()
 
 ipcRenderer.send('request-all-data')
 
 ipcRenderer.on('get-all-data', (event, arg) => {
-  allData = arg
+  interestDateAllData = arg
 })
 
 ipcRenderer.on('add-new-loan', (event, arg) => {
-  allData.push(arg)
-  tableData = []
-  tableData.push(arg)
+  interestDateAllData.push(arg)
+  interestDateTableData = []
+  interestDateTableData.push(arg)
   loadData()
   document.getElementById('button-table').click()
 })
 
 ipcRenderer.on('delete-contract-number', (event, arg) => {
-  allData = allData.filter(function (item) {
+  interestDateAllData = interestDateAllData.filter(function (item) {
     return item.contractNumber !== arg
   })
-  tableData = tableData.filter(function (item) {
+  interestDateTableData = interestDateTableData.filter(function (item) {
     return item.contractNumber !== arg
   })
   loadData()
@@ -34,18 +34,18 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
 
 function loadData() {
   document.getElementById('interest-date-table-data').innerHTML = ""
-  for (d in tableData) {
+  for (d in interestDateTableData) {
     document.getElementById('interest-date-table-data').innerHTML +=
       "<tr>" +
       "<td>" + (parseInt(d) + 1) + "</td>" +
-      "<td>" + tableData[d].name + "</td>" +
-      "<td>" + tableData[d].bankAccount + "</td>" +
-      "<td>" + tableData[d].bankName + "</td>" +
-      "<td>" + tableData[d].openingBank + "</td>" +
+      "<td>" + interestDateTableData[d].name + "</td>" +
+      "<td>" + interestDateTableData[d].bankAccount + "</td>" +
+      "<td>" + interestDateTableData[d].bankName + "</td>" +
+      "<td>" + interestDateTableData[d].openingBank + "</td>" +
 
-      "<td>" + tableData[d].firstDay + "</td>" +
+      "<td>" + interestDateTableData[d].firstDay + "</td>" +
 
-      "<td>" + tableData[d].interest + "</td>" +
+      "<td>" + interestDateTableData[d].interest + "</td>" +
       "</tr>"
   }
   calculateSum()
@@ -53,8 +53,8 @@ function loadData() {
 
 function calculateSum() {
   var acturalInterestSum = 0;
-  for (i in tableData) {
-    acturalInterestSum += parseFloat(tableData[i].actualInterest)
+  for (i in interestDateTableData) {
+    acturalInterestSum += parseFloat(interestDateTableData[i].actualInterest)
   }
   document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
 }
@@ -62,7 +62,7 @@ function calculateSum() {
 // 打印预览
 const printPreview = document.getElementById('interest-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', tableData)
+  ipcRenderer.send('pass-print-value', interestDateTableData)
   const modalPath = path.join('file://', __dirname, '../../sections/windows/interest-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 1000, height: 1000 })
   win.on('close', () => { win = null })
@@ -80,7 +80,7 @@ function checkInterestDate(idn) {
 }
 
 interestDate.addEventListener("input", (event, arg) => {
-  tableData = allData.filter(checkInterestDate);
+  interestDateTableData = interestDateAllData.filter(checkInterestDate);
   loadData()
 })
 

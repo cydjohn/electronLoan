@@ -35,6 +35,7 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
 
 function loadData() {
   document.getElementById('data').innerHTML = ""
+  console.log(tableData.length)
   for (d in tableData) {
     document.getElementById('data').innerHTML +=
       "<tr>" +
