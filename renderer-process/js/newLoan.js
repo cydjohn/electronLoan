@@ -176,7 +176,7 @@ endTime.addEventListener('change', () => {
 // 计算
 tax.addEventListener('input', () => {
     if (tax.value >= 0) {
-        actualInterest.value = interest.value - tax.value
+        actualInterest.value = (interest.value - tax.value).toFixed(2)
         calculatePaymentDate()
     }
     else {
