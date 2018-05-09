@@ -63,11 +63,10 @@ printPreview.addEventListener('click', (event) => {
 // 还款日期筛选
 const endDate = document.getElementById('end-date-table-datetimepicker3')
 function checkEndDate(idn) {
-  console.log('adsfasdfasdfasdfa')
   if (endDate.value == "") {
     return false
   }
-  return idn.endTime.search(endDate.value) != -1
+  return idn.endTime.search(endDate.value.slice(0,7)) != -1
 }
 
 endDate.addEventListener("input", (event, arg) => {

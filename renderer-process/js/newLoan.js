@@ -68,8 +68,7 @@ btn.addEventListener('click', () => {
 
 oneYearButton.addEventListener('click', () => { 
     if(startTime.value != "") {
-        console.log(moment(startTime.value).add(1, 'year').format('YYYY-MM-DD'));
-        endTime.value = moment(startTime.value).add(1, 'year').format('YYYY-MM-DD');
+        endTime.value = moment(startTime.value).add(1, 'year').subtract(1,'day').format('YYYY-MM-DD');
     }
 })
 
