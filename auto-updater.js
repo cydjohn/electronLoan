@@ -32,7 +32,7 @@ exports.initialize = () => {
     exports.updateMenu()
   })
 
-  const server = 'https://hazel-server-qcdwfvekym.now.sh'
+  const server = 'https://hazel-server-qcdwfvekym.now.'
   const feed = `${server}/update/${process.platform}/${app.getVersion()}`
   console.log(feed)
   autoUpdater.setFeedURL(feed)
