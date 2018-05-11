@@ -7,6 +7,7 @@ const { BrowserWindow } = require('electron').remote
 
 const btn = document.getElementById("add-new")
 
+const alertLabel = document.getElementById('alertLabel')
 
 const contractNumber = document.getElementById('contract-number')
 const name = document.getElementById("name")
@@ -31,13 +32,70 @@ const fourthPaymentDay = document.getElementById('fourth-payment-day')
 const oneYearButton = document.getElementById('one-year-duration-button')
 
 let canSubmit = false
+alertLabel.hidden = true
 var loan = {}
 
 
 
 btn.addEventListener('click', () => {
-    if (canSubmit) {
-
+    if(contractNumber.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "合同号不能为空"
+    }
+    else if (name.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "姓名不能为空"
+    }
+    else if (!isCardNo(idNumber.value)) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "身份证号不正确"
+    }
+    else if (bankAccount.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "银行卡号不能为空"
+    }
+    else if (bankName.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "银行名称不能为空"
+    }
+    else if (openingBank.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "开户行信息不能为空"
+    }
+    else if (amount.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "借款金额不能为空"
+    }
+    else if(!isValidAmount()) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "借款金额必须为正数"
+    }
+    else if (startTime.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "借款时间不能为空"
+    }
+    else if (endTime.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "还款时间不能为空"
+    }
+    else if (!isValidTime()) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "还款时间必须晚于借款时间"
+    }
+    else if (!isValidTaxRate()) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "请输入有效税率"
+    }
+    else if (tax.value.length == 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "请输入应交税费"
+    }
+    else if (tax.value <= 0) {
+        alertLabel.hidden = false
+        alertLabel.innerHTML = "应交税费必须为正数"
+    }
+    else {
+        alertLabel.hidden = true
         loan.contractNumber = contractNumber.value
         loan.name = name.value
         loan.idNumber = idNumber.value
@@ -77,7 +135,6 @@ function isCardNo(card) {
     // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X  
     var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     if (reg.test(card) === false) {
-        alert("身份证输入不合法");
         return false;
     }
     return true;
@@ -108,7 +165,6 @@ bankAccount.addEventListener('change', () => {
 // 借款金额验证
 function isValidAmount(number) {
     if (number < 1) {
-        alert("请输入有效金额")
         return false
     }
     else {
@@ -129,7 +185,7 @@ amount.addEventListener('input', () => {
 
 // 税率验证
 function isValidTaxRate(number) {
-    if (number < 0) {
+    if (number <= 0) {
         alert("请输入有效税率")
         return false
     }
