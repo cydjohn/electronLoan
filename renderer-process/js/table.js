@@ -1,7 +1,9 @@
-const { BrowserWindow } = require('electron').remote
+const { BrowserWindow, dialog } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
 // const newWindowBtn = document.getElementById('new')
+
+const XLSX = require('xlsx')
 
 let allData = []
 
@@ -96,7 +98,7 @@ function checkId(idn) {
   if (idSearchBox.value == "") {
     return false
   }
-  else if(idSearchBox.value == "*") {
+  else if (idSearchBox.value == "*") {
     return true
   }
   return idn.idNumber.search(idSearchBox.value) != -1
@@ -114,7 +116,7 @@ function checkContractNumber(bn) {
   if (contraIdSearchBox.value == "") {
     return false
   }
-  else if(contraIdSearchBox.value == "*") {
+  else if (contraIdSearchBox.value == "*") {
     return true
   }
   return bn.contractNumber.search(contraIdSearchBox.value) != -1
@@ -127,15 +129,26 @@ contraIdSearchBox.addEventListener("input", () => {
 
 
 
-// 打印预览
+// 导出总表
 const printPreview = document.getElementById('print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', tableData)
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/print-preview.html')
-  let win = new BrowserWindow({ width: 800, height: 1000 })
-  win.on('close', () => { win = null })
-  win.loadURL(modalPath)
-  win.show()
+  // ipcRenderer.send('pass-print-value', tableData)
+  // const modalPath = path.join('file://', __dirname, '../../sections/windows/print-preview.html')
+  // let win = new BrowserWindow({ width: 800, height: 1000 })
+  // win.on('close', () => { win = null })
+  // win.loadURL(modalPath)
+  // win.show()
+  dialog.showSaveDialog({
+    title: '导出总表',
+    defaultPath: '~/总表.xml'
+  }, function (result) {
+    console.log(result)
+    /* html表格转excel */
+    var wb = XLSX.utils.table_to_book(document.getElementById('dataTable'));
+    /* 生成文件，导出D盘 */
+    XLSX.writeFile(wb, result);
+  });
+
 })
 
 // 删除
@@ -156,7 +169,7 @@ function checkStartDate(idn) {
   if (startDate.value == "") {
     return false
   }
-  return idn.startTime.search(startDate.value.slice(0,7)) != -1
+  return idn.startTime.search(startDate.value.slice(0, 7)) != -1
 }
 
 startDate.addEventListener("input", (event, arg) => {
@@ -171,7 +184,7 @@ function checkEndDate(idn) {
   if (endDate.value == "") {
     return false
   }
-  return idn.endTime.search(endDate.value.slice(0,7)) != -1
+  return idn.endTime.search(endDate.value.slice(0, 7)) != -1
 }
 
 endDate.addEventListener("input", (event, arg) => {
@@ -186,7 +199,7 @@ function checkInterestDate(idn) {
   if (interestDate.value == "") {
     return false
   }
-  return idn.firstDay.search(interestDate.value.slice(0,7)) != -1
+  return idn.firstDay.search(interestDate.value.slice(0, 7)) != -1
 }
 
 interestDate.addEventListener("input", (event, arg) => {
