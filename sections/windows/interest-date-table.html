@@ -1,6 +1,7 @@
 <template class="task-template">
     <section id="interest-date-table-section" class="section js-section u-category-windows">
-
+        <script>window.$ = window.jQuery = require('jquery');
+            require('bootstrap-datepicker')</script>
         <div class="container col-lg-12 col-md-12">
             <div class="input-group col-lg-4 col-md-4 mb-3">
                 <div class="input-group-prepend">
@@ -9,6 +10,8 @@
                 <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id='interest-date-table-datetimepicker2'>
             </div>
         </div>
+
+
 
 
 
@@ -51,6 +54,7 @@
         </div>
         <script>
             require('./renderer-process/js/interest-date-table')
+
         </script>
     </section>
 </template>
