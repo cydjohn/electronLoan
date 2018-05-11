@@ -1,6 +1,7 @@
 const { BrowserWindow, dialog } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
+var moment = require('moment');
 // const newWindowBtn = document.getElementById('new')
 
 const XLSX = require('xlsx')
@@ -35,6 +36,31 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
   loadData()
 })
 
+function getInterestPaymentData(rowData) {
+  if(moment(rowData.firstDay).isBefore(moment(new Date()))) {
+    if(moment(rowData.secondDay).isBefore(moment(new Date()))){
+      if(moment(rowData.thirdDay).isBefore(moment(new Date()))){
+        if(moment(rowData.fourthDay).isBefore(moment(new Date()))){
+          // 过期的
+        }
+        else {
+          return rowData.fourthDay
+        }
+      }
+      else {
+        return rowData.thirdDay
+      }
+    }
+    else {
+      return rowData.secondDay
+    }
+  }
+  else {
+    return rowData.firstDay
+  }
+}
+
+
 function loadData() {
   document.getElementById('data').innerHTML = ""
   console.log(allData.length)
@@ -49,7 +75,7 @@ function loadData() {
       "<td>" + tableData[d].bankName + "</td>" +
       "<td>" + tableData[d].openingBank + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
-      "<td>" + tableData[d].firstDay + "</td>" +
+      "<td>" + getInterestPaymentData(tableData[d]) + "</td>" +
       "<td>" + tableData[d].endTime + "</td>" +
       "<td>" + tableData[d].amount + "</td>" +
       "<td>" + tableData[d].interestRate + "</td>" +
@@ -132,12 +158,6 @@ contraIdSearchBox.addEventListener("input", () => {
 // 导出总表
 const printPreview = document.getElementById('print-preview')
 printPreview.addEventListener('click', (event) => {
-  // ipcRenderer.send('pass-print-value', tableData)
-  // const modalPath = path.join('file://', __dirname, '../../sections/windows/print-preview.html')
-  // let win = new BrowserWindow({ width: 800, height: 1000 })
-  // win.on('close', () => { win = null })
-  // win.loadURL(modalPath)
-  // win.show()
   dialog.showSaveDialog({
     title: '导出总表',
     defaultPath: '~/总表.xml'

@@ -1,9 +1,10 @@
 // import { start } from 'repl';
 
 const { ipcRenderer, remote } = require('electron');
-var moment = require('moment');
+var moment = require('moment')
 const path = require('path')
 const { BrowserWindow } = require('electron').remote
+
 
 const btn = document.getElementById("add-new")
 
