@@ -1,5 +1,3 @@
-// import { start } from 'repl';
-
 const { ipcRenderer, remote } = require('electron');
 var moment = require('moment')
 const path = require('path')

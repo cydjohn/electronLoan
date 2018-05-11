@@ -1,6 +1,7 @@
 const { BrowserWindow } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
+var moment = require('moment')
 // const newWindowBtn = document.getElementById('new')
 
 let interestDateAllData = []
@@ -14,13 +15,6 @@ ipcRenderer.on('get-all-data', (event, arg) => {
   interestDateAllData = arg
 })
 
-// ipcRenderer.on('add-new-loan', (event, arg) => {
-//   interestDateAllData.push(arg)
-//   interestDateTableData = []
-//   interestDateTableData.push(arg)
-//   loadData()
-//   document.getElementById('button-table').click()
-// })
 
 ipcRenderer.on('delete-contract-number', (event, arg) => {
   interestDateAllData = interestDateAllData.filter(function (item) {
@@ -31,6 +25,36 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
   })
   loadData()
 })
+
+function getInterestPaymentAmount(rowData) {
+  if(moment(rowData.firstDay).isBefore(moment(new Date()))) {
+    if(moment(rowData.secondDay).isBefore(moment(new Date()))){
+      if(moment(rowData.thirdDay).isBefore(moment(new Date()))){
+        if(moment(rowData.fourthDay).isBefore(moment(new Date()))){
+          // 过期的
+
+        }
+        else {
+
+          return (rowData.actualInterest - rowData.firstPay - rowData.restPayment *2).toFixed(2)
+        }
+      }
+      else {
+
+        return rowData.restPayment
+      }
+    }
+    else {
+
+      return rowData.restPayment
+    }
+  }
+  else {
+
+    return rowData.firstPayment
+  }
+}
+
 
 function loadData() {
   document.getElementById('interest-date-table-data').innerHTML = ""
@@ -45,7 +69,7 @@ function loadData() {
 
       "<td>" + interestDateTableData[d].firstDay + "</td>" +
 
-      "<td>" + interestDateTableData[d].interest + "</td>" +
+      "<td>" + getInterestPaymentAmount(interestDateTableData[d]) + "</td>" +
       "</tr>"
   }
   calculateSum()

@@ -85,7 +85,7 @@ function loadData() {
       "<td>" + tableData[d].firstPayment + "</td>" +
       "<td>" + tableData[d].restPayment + "</td>" +
       "<td>" + tableData[d].restPayment + "</td>" +
-      "<td>" + tableData[d].restPayment + "</td>" +
+      "<td>" + (actualInterest.value - firstPay - loan.restPayment *2).toFixed(2) + "</td>" +
       "</tr>"
   }
   calculateSum()
