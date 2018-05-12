@@ -14,7 +14,7 @@ ipcRenderer.send('request-all-data')
 ipcRenderer.on('get-all-data', (event, arg) => {
   interestDateAllData = arg
 })
-
+const interestDate = document.getElementById('interest-date-table-datetimepicker2')
 
 ipcRenderer.on('delete-contract-number', (event, arg) => {
   interestDateAllData = interestDateAllData.filter(function (item) {
@@ -27,25 +27,22 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
 })
 
 function getInterestPaymentAmount(rowData) {
-  if(moment(rowData.firstDay).isBefore(moment(new Date()))) {
-    if(moment(rowData.secondDay).isBefore(moment(new Date()))){
-      if(moment(rowData.thirdDay).isBefore(moment(new Date()))){
-        if(moment(rowData.fourthDay).isBefore(moment(new Date()))){
+  if(moment(rowData.firstDay).isBefore(moment(interestDate.value))) {
+    if(moment(rowData.secondDay).isBefore(moment(interestDate.value))){
+      if(moment(rowData.thirdDay).isBefore(moment(interestDate.value))){
+        if(moment(rowData.fourthDay).isBefore(moment(interestDate.value))){
           // 过期的
-
+          
         }
         else {
-
           return (rowData.actualInterest - rowData.firstPay - rowData.restPayment *2).toFixed(2)
         }
       }
       else {
-
         return rowData.restPayment
       }
     }
     else {
-
       return rowData.restPayment
     }
   }
@@ -57,6 +54,7 @@ function getInterestPaymentAmount(rowData) {
 
 
 function loadData() {
+  var acturalInterestSum = 0
   document.getElementById('interest-date-table-data').innerHTML = ""
   for (d in interestDateTableData) {
     document.getElementById('interest-date-table-data').innerHTML +=
@@ -67,40 +65,36 @@ function loadData() {
       "<td>" + interestDateTableData[d].bankName + "</td>" +
       "<td>" + interestDateTableData[d].openingBank + "</td>" +
 
-      "<td>" + interestDateTableData[d].firstDay + "</td>" +
+      "<td>" + interestDate.value + "</td>" +
 
       "<td>" + getInterestPaymentAmount(interestDateTableData[d]) + "</td>" +
       "</tr>"
-  }
-  calculateSum()
-}
-
-function calculateSum() {
-  var acturalInterestSum = 0;
-  for (i in interestDateTableData) {
-    acturalInterestSum += parseFloat(interestDateTableData[i].actualInterest)
+      acturalInterestSum += parseInt(getInterestPaymentAmount(interestDateTableData[d]))
   }
   document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
+
 }
+
 
 // 打印预览
 const printPreview = document.getElementById('interest-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', interestDateTableData)
+  ipcRenderer.send('pass-print-value', [interestDateTableData,interestDate.value])
   const modalPath = path.join('file://', __dirname, '../../sections/windows/interest-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 1000, height: 1000 })
+  // win.webContents.openDevTools()
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
   win.show()
 })
 
 // 付息日筛选
-const interestDate = document.getElementById('interest-date-table-datetimepicker2')
+
 function checkInterestDate(idn) {
   if (interestDate.value == "") {
     return false
   }
-  return idn.firstDay.search(interestDate.value.slice(0,7)) != -1
+  return idn.firstDay.search(interestDate.value) != -1 || idn.secondDay.search(interestDate.value) != -1 || idn.thirdDay.search(interestDate.value) != -1 || idn.fourthDay.search(interestDate.value) != -1
 }
 
 interestDate.addEventListener("input", (event, arg) => {

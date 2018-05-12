@@ -2,11 +2,13 @@ const { BrowserWindow } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
 
-let tableData = []
+var tableData = []
+var printDate = ""
 ipcRenderer.send('get-print-value')
 
 ipcRenderer.on('print-data', (event, data) => {
-    tableData = data
+    tableData = data[0]
+    printDate = data[1]
     loadData()
 })
 

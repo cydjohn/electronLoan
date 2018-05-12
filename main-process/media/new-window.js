@@ -5,12 +5,19 @@ const { BrowserWindow } = require('electron')
 
 var Datastore = require('nedb')
 var userData = app.getAppPath('userData');
+<<<<<<< HEAD
 // db = new Datastore({ filename: userData + '/.dist/persons.db', autoload: true });
 db = new Datastore({ filename: 'D://db/persons.db', autoload: true});
+=======
+db = new Datastore({ filename: userData + '/dist/persons.db', autoload: true });
+// db = new Datastore({ filename: 'D://db/persons.db', autoload: true});
+// db = new Datastore({ filename: '~/Desktop/test.db', autoload: true});
+>>>>>>> cebac4c1978415382864c4fd74ba916583731d3b
 
 
-let tableData = []
-let tempData = {}
+var tableData = []
+var tempData = {}
+var printDate = ""
 
 ipcMain.on('getMsg', (event, arg) => {
     db.insert(arg, function (err, newDoc) {   // Callback is optional
@@ -28,7 +35,8 @@ ipcMain.on('getMsg', (event, arg) => {
 })
 
 ipcMain.on('pass-print-value', (event, arg) => {
-    tableData = arg
+    tableData = arg[0]
+    printDate = arg[1]
 })
 
 ipcMain.on('request-all-data', (event, arg) => {
@@ -39,7 +47,7 @@ ipcMain.on('request-all-data', (event, arg) => {
 })
 
 ipcMain.on('get-print-value', (event, arg) => {
-    event.sender.send('print-data', tableData)
+    event.sender.send('print-data', [tableData,printDate])
 })
 
 ipcMain.on('request-temp-data', (event, arg) => {
