@@ -43,7 +43,6 @@ function getInterestPaymentAmount(rowData) {
       }
     }
     else {
-      console.log("second")
       return rowData.restPayment
     }
   }
@@ -55,6 +54,7 @@ function getInterestPaymentAmount(rowData) {
 
 
 function loadData() {
+  var acturalInterestSum = 0
   document.getElementById('interest-date-table-data').innerHTML = ""
   for (d in interestDateTableData) {
     document.getElementById('interest-date-table-data').innerHTML +=
@@ -69,24 +69,20 @@ function loadData() {
 
       "<td>" + getInterestPaymentAmount(interestDateTableData[d]) + "</td>" +
       "</tr>"
-  }
-  calculateSum()
-}
-
-function calculateSum() {
-  var acturalInterestSum = 0;
-  for (i in interestDateTableData) {
-    acturalInterestSum += parseFloat(interestDateTableData[i].actualInterest)
+      acturalInterestSum += parseInt(getInterestPaymentAmount(interestDateTableData[d]))
   }
   document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
+
 }
+
 
 // 打印预览
 const printPreview = document.getElementById('interest-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', interestDateTableData)
+  ipcRenderer.send('pass-print-value', [interestDateTableData,interestDate.value])
   const modalPath = path.join('file://', __dirname, '../../sections/windows/interest-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 1000, height: 1000 })
+  // win.webContents.openDevTools()
   win.on('close', () => { win = null })
   win.loadURL(modalPath)
   win.show()
