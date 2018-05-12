@@ -7,7 +7,7 @@ let endDateAllData = []
 
 let endDateTableData = []
 // loadData()
-
+const endDate = document.getElementById('end-date-table-datetimepicker3')
 ipcRenderer.send('request-all-data')
 ipcRenderer.on('get-all-data', (event, arg) => {
   endDateAllData = arg
@@ -51,7 +51,7 @@ function calculateSum() {
 // 打印预览
 const printPreview = document.getElementById('end-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', endDateTableData)
+  ipcRenderer.send('pass-print-value', [endDateTableData,endDate.value])
   const modalPath = path.join('file://', __dirname, '../../sections/windows/end-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 800, height: 1000 })
   win.on('close', () => { win = null })
@@ -61,7 +61,7 @@ printPreview.addEventListener('click', (event) => {
 
 
 // 还款日期筛选
-const endDate = document.getElementById('end-date-table-datetimepicker3')
+
 function checkEndDate(idn) {
   if (endDate.value == "") {
     return false

@@ -7,7 +7,7 @@ let startDataAllData = []
 
 let startDateTableData = []
 // loadData()
-
+const startDate = document.getElementById('start-date-table-datetimepicker1')
 ipcRenderer.send('request-all-data')
 
 ipcRenderer.on('get-all-data', (event, arg) => {
@@ -61,7 +61,7 @@ function calculateSum() {
 // 打印预览
 const printPreview = document.getElementById('start-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', startDateTableData)
+  ipcRenderer.send('pass-print-value', [startDateTableData,startDate])
   const modalPath = path.join('file://', __dirname, '../../sections/windows/start-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 800, height: 1000 })
   win.on('close', () => { win = null })
@@ -73,7 +73,7 @@ printPreview.addEventListener('click', (event) => {
 
 
 // 借款日期筛选
-const startDate = document.getElementById('start-date-table-datetimepicker1')
+
 function checkStartDate(idn) {
   if (startDate.value == "") {
     return false
