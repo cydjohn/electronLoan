@@ -1,6 +1,7 @@
 const { BrowserWindow } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
+var moment = require('moment')
 
 var tableData = []
 var printDate = ""
@@ -9,8 +10,12 @@ ipcRenderer.send('get-print-value')
 ipcRenderer.on('print-data', (event, data) => {
     tableData = data[0]
     printDate = data[1]
+    tableData.sort(function(a, b) {
+        return a[1] - b[1];
+    });
     loadData()
 })
+
 
 
 function loadData() {
@@ -28,7 +33,17 @@ function loadData() {
             "<td>" + tableData[d].amount + "</td>" +
             "</tr>"
     }
+    calculateSum()
 }
+
+
+function calculateSum() {
+    var loanSum = 0;
+    for (i in tableData) {
+      loanSum += parseFloat(tableData[i].amount)
+    }
+    document.getElementById("end-date-table-loan-sum").innerHTML = loanSum
+  }
 
 
 

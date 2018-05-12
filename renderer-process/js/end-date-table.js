@@ -1,6 +1,7 @@
 const { BrowserWindow } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
+var moment = require('moment')
 // const newWindowBtn = document.getElementById('new')
 
 let endDateAllData = []
@@ -38,7 +39,6 @@ function calculateSum() {
     loanSum += parseFloat(endDateTableData[i].amount)
   }
   document.getElementById("end-date-table-loan-sum").innerHTML = loanSum
-  console.log('sum',loanSum);
 }
 
 
@@ -51,7 +51,7 @@ function calculateSum() {
 // 打印预览
 const printPreview = document.getElementById('end-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', [endDateTableData,endDate.value])
+  ipcRenderer.send('pass-print-value', [endDateTableData, endDate.value])
   const modalPath = path.join('file://', __dirname, '../../sections/windows/end-date-table-print-preview.html')
   let win = new BrowserWindow({ width: 800, height: 1000 })
   win.on('close', () => { win = null })
@@ -66,11 +66,14 @@ function checkEndDate(idn) {
   if (endDate.value == "") {
     return false
   }
-  return idn.endTime.search(endDate.value.slice(0,7)) != -1
+  return idn.endTime.search(endDate.value.slice(0, 7)) != -1
 }
 
 endDate.addEventListener("input", (event, arg) => {
   endDateTableData = endDateAllData.filter(checkEndDate);
+  endDateTableData.sort(function (a, b) {
+    return moment(a.endTime).isAfter(moment(b.endTime));
+  });
   loadData()
 })
 
