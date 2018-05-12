@@ -7,9 +7,9 @@ const debug = /--debug/.test(process.argv[2])
 
 var Datastore = require('nedb')
 var userData = app.getAppPath('userData');
-db = new Datastore({ filename: userData+'/.dist/persons.db'});
+// db = new Datastore({ filename: userData+'/.dist/persons.db'});
 
-// db = new Datastore({ filename: 'D://db/persons.db'});
+db = new Datastore({ filename: 'D://db/persons.db'});
 
 if (process.mas) app.setName('借款系统')
 
