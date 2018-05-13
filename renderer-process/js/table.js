@@ -160,7 +160,7 @@ const printPreview = document.getElementById('print-preview')
 printPreview.addEventListener('click', (event) => {
   dialog.showSaveDialog({
     title: '导出总表',
-    defaultPath: '~/总表.xml'
+    defaultPath: '~/总表.xlsx'
   }, function (result) {
     console.log(result)
     /* html表格转excel */

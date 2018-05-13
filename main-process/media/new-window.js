@@ -5,14 +5,9 @@ const { BrowserWindow } = require('electron')
 
 var Datastore = require('nedb')
 var userData = app.getAppPath('userData');
-<<<<<<< HEAD
-// db = new Datastore({ filename: userData + '/.dist/persons.db', autoload: true });
-db = new Datastore({ filename: 'D://db/persons.db', autoload: true});
-=======
 db = new Datastore({ filename: userData + '/dist/persons.db', autoload: true });
 // db = new Datastore({ filename: 'D://db/persons.db', autoload: true});
 // db = new Datastore({ filename: '~/Desktop/test.db', autoload: true});
->>>>>>> cebac4c1978415382864c4fd74ba916583731d3b
 
 
 var tableData = []

@@ -7,13 +7,9 @@ const debug = /--debug/.test(process.argv[2])
 
 var Datastore = require('nedb')
 var userData = app.getAppPath('userData');
-<<<<<<< HEAD
-// db = new Datastore({ filename: userData+'/.dist/persons.db'});
-=======
 db = new Datastore({ filename: userData+'/dist/persons.db'});
->>>>>>> cebac4c1978415382864c4fd74ba916583731d3b
 
-db = new Datastore({ filename: 'D://db/persons.db'});
+// db = new Datastore({ filename: 'D://db/persons.db'});
 
 // db = new Datastore({ filename: '~/Desktop/test.db'});
 
