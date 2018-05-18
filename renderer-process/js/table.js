@@ -79,7 +79,7 @@ function loadData() {
       "<td>" + tableData[d].endTime + "</td>" +
       "<td>" + tableData[d].amount + "</td>" +
       "<td>" + tableData[d].interestRate + "</td>" +
-      "<td>" + tableData[d].interest + "</td>" +
+      "<td>" + parseFloat(tableData[d].interest).toFixed(2) + "</td>" +
       "<td>" + tableData[d].tax + "</td>" +
       "<td>" + tableData[d].actualInterest + "</td>" +
       "<td>" + tableData[d].firstPayment + "</td>" +
@@ -105,9 +105,9 @@ function calculateSum() {
     fourthInterestSum += parseFloat(tableData[i].restPayment)
   }
 
-  document.getElementById("loan-sum").innerHTML = loanSum
-  document.getElementById("interest-sum").innerHTML = interestSum
-  document.getElementById("tax-sum").innerHTML = taxSum
+  document.getElementById("loan-sum").innerHTML = loanSum.toFixed(2)
+  document.getElementById("interest-sum").innerHTML = interestSum.toFixed(2)
+  document.getElementById("tax-sum").innerHTML = taxSum.toFixed(2)
   document.getElementById("actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
   document.getElementById("first-interest-sum").innerHTML = firstInterestSum.toFixed(2)
   document.getElementById("second-interest-sum").innerHTML = secondInterestSum.toFixed(2)

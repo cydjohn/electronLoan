@@ -32,10 +32,11 @@ function getInterestPaymentAmount(rowData) {
       if(moment(rowData.thirdDay).isBefore(moment(interestDate.value))){
         if(moment(rowData.fourthDay).isBefore(moment(interestDate.value))){
           // 过期的
-          
+          return 0.0
         }
         else {
-          return (rowData.actualInterest - rowData.firstPay - rowData.restPayment *2).toFixed(2)
+          console.log("last")
+          return (rowData.actualInterest - rowData.firstPayment - rowData.restPayment *2).toFixed(2)
         }
       }
       else {
