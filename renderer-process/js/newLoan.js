@@ -175,6 +175,7 @@ amount.addEventListener('input', () => {
     if (isValidAmount(amount.value)) {
         interest.value = amount.value * interestRate.value / 100
         canSubmit = true
+        calculatePaymentDate()
     }
     else {
         canSubmit = false
@@ -230,7 +231,6 @@ endTime.addEventListener('change', () => {
 // 计算
 tax.addEventListener('input', () => {
     if (tax.value >= 0) {
-        actualInterest.value = (interest.value - tax.value).toFixed(2)
         calculatePaymentDate()
     }
     else {
@@ -240,6 +240,7 @@ tax.addEventListener('input', () => {
 
 
 function calculatePaymentDate() {
+    actualInterest.value = (interest.value - tax.value).toFixed(2)
     var paymentDates = ['03-15', '06-15', '09-15', '12-15']
     var year = startTime.value.slice(0, 4)
     for (d in paymentDates) {
