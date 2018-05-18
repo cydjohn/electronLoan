@@ -70,8 +70,8 @@ function loadData() {
       "<td>" + (parseInt(d) + 1) + "</td>" +
       "<td>" + tableData[d].contractNumber + "</td>" +
       "<td>" + tableData[d].name + "</td>" +
-      "<td>" + tableData[d].idNumber + "</td>" +
-      "<td>" + tableData[d].bankAccount + "</td>" +
+      "<td>'" + tableData[d].idNumber + "</td>" +
+      "<td>'" + tableData[d].bankAccount + "</td>" +
       "<td>" + tableData[d].bankName + "</td>" +
       "<td>" + tableData[d].openingBank + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
