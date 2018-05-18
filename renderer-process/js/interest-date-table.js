@@ -70,7 +70,7 @@ function loadData() {
 
       "<td>" + getInterestPaymentAmount(interestDateTableData[d]) + "</td>" +
       "</tr>"
-      acturalInterestSum += parseInt(getInterestPaymentAmount(interestDateTableData[d]))
+      acturalInterestSum += parseFloat(getInterestPaymentAmount(interestDateTableData[d]))
   }
   document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
 

@@ -63,7 +63,7 @@ function getInterestPaymentData(rowData) {
 
 function loadData() {
   document.getElementById('data').innerHTML = ""
-  console.log(allData.length)
+  var d = 0
   for (d in tableData) {
     document.getElementById('data').innerHTML +=
       "<tr>" +
