@@ -102,7 +102,8 @@ function calculateSum() {
     firstInterestSum += parseFloat(tableData[i].firstPayment)
     secondInterestSum += parseFloat(tableData[i].restPayment)
     thirdInterestSum += parseFloat(tableData[i].restPayment)
-    fourthInterestSum += parseFloat(tableData[i].restPayment)
+    // fourthInterestSum += parseFloat(tableData[i].restPayment)
+    fourthInterestSum += parseFloat(tableData[i].actualInterest - tableData[i].firstPayment - tableData[i].restPayment *2)
   }
 
   document.getElementById("loan-sum").innerHTML = loanSum.toFixed(2)
