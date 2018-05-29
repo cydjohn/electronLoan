@@ -20,10 +20,10 @@ function getInterestPaymentAmount(rowData) {
         if(moment(rowData.thirdDay).isBefore(moment(printDate))){
           if(moment(rowData.fourthDay).isBefore(moment(printDate))){
             // 过期的
-            
+          return 0.0
           }
           else {
-            return (rowData.actualInterest - rowData.firstPay - rowData.restPayment *2).toFixed(2)
+            return (rowData.actualInterest - rowData.firstPayment - rowData.restPayment *2).toFixed(2)
           }
         }
         else {
@@ -56,7 +56,7 @@ function loadData() {
         "<td>" + printDate + "</td>" +
         "<td>" + getInterestPaymentAmount(tableData[d]) + "</td>" +
         "</tr>"
-        acturalInterestSum += parseInt(getInterestPaymentAmount(tableData[d]))
+        acturalInterestSum += parseFloat(getInterestPaymentAmount(tableData[d]))
     }
     document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
 
