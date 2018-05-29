@@ -1,6 +1,7 @@
 const { BrowserWindow } = require('electron').remote
 const path = require('path')
 const { ipcRenderer } = require('electron')
+var moment = require('moment')
 // const newWindowBtn = document.getElementById('new')
 
 let startDataAllData = []
@@ -78,11 +79,14 @@ function checkStartDate(idn) {
   if (startDate.value == "") {
     return false
   }
-  return idn.startTime.search(startDate.value) != -1
+  return idn.startTime.search(startDate.value.slice(0, 7)) != -1
 }
 
 startDate.addEventListener("input", (event, arg) => {
   startDateTableData = startDataAllData.filter(checkStartDate);
+  startDateTableData.sort(function (a, b) {
+    return moment(a.startTime).isAfter(moment(b.startTime));
+  });
   loadData()
 })
 
