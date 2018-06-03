@@ -44,7 +44,7 @@ function loadData() {
       "<td>" + startDateTableData[d].name + "</td>" +
       "<td>" + startDateTableData[d].bankAccount + "</td>" +
       "<td>" + startDateTableData[d].startTime + "</td>" +
-      "<td>" + startDateTableData[d].amount + "</td>" +
+      "<td>" + parseFloat(startDateTableData[d].amount).toFixed(2) + "</td>" +
       "</tr>"
   }
   calculateSum()
@@ -55,7 +55,7 @@ function calculateSum() {
   for (i in startDateTableData) {
     loanSum += parseFloat(startDateTableData[i].amount)
   }
-  document.getElementById("start-date-table-loan-sum").innerHTML = loanSum
+  document.getElementById("start-date-table-loan-sum").innerHTML = loanSum.toFixed(2)
 }
 
 

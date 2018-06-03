@@ -24,11 +24,19 @@ function loadData() {
             "<td>" + tableData[d].name + "</td>" +
             "<td>" + tableData[d].bankAccount + "</td>" +
             "<td>" + tableData[d].startTime + "</td>" +
-            "<td>" + tableData[d].amount + "</td>" +
+            "<td>" + parseFloat(tableData[d].amount).toFixed(2) + "</td>" +
             "</tr>"
     }
-
+    calculateSum()
 }
+
+function calculateSum() {
+    var loanSum = 0
+    for (i in tableData) {
+      loanSum += parseFloat(tableData[i].amount)
+    }
+    document.getElementById("start-date-table-loan-sum").innerHTML = loanSum.toFixed(2)
+  }
 
 const printPDFBtn = document.getElementById('start-date-table-print-pdf')
 
