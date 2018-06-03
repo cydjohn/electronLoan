@@ -8,7 +8,8 @@ resultPromise = electronInstaller.createWindowsInstaller({
     noMsi: true,
     setupExe: 'ElectronLoanSetup.exe',
     setupIcon: path.join('assets', 'app-icon', 'win', 'app.ico'),
-    skipUpdateIcon: true
+    skipUpdateIcon: true,
+    name: "ElectronLoan"
   });
 
 resultPromise.then(() => console.log("It worked!"), (e) => console.log(`No dice: ${e.message}`));
