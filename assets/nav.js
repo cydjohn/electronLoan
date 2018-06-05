@@ -74,7 +74,7 @@ let canLogin = false
 let pass = document.getElementById('pass')
 const loginButton = document.getElementById('get-started')
 loginButton.addEventListener('click', () => {
-  if (pass.value == "123456") {
+  if (pass.value == "aqtc321") {
     canLogin = true
     document.querySelector('#about-modal').remove('is-shown')
     document.getElementById('bootstrap').innerHTML = '<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">'
