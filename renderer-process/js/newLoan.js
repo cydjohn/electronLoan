@@ -246,7 +246,7 @@ function calculatePaymentDate() {
     for (d in paymentDates) {
         if (moment(startTime.value).isBefore(moment(year + "-" + paymentDates[d], 'YYYY-MM-DD'))) {
             dailyInterest.value = (actualInterest.value / 360).toFixed(2)
-            var firstPay = (dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)).toFixed(2)
+            var firstPay = (dailyInterest.value * (moment((year + "-" + paymentDates[d]), 'YYYY-MM-DD').diff(moment(startTime.value), 'days') - 2)).toFixed(2)
             loan.firstDay = year + "-" + paymentDates[d]
             if (++d == 4) {
                 ++year
