@@ -7,11 +7,17 @@ const debug = /--debug/.test(process.argv[2])
 
 var Datastore = require('nedb')
 var userData = app.getAppPath('userData');
-// db = new Datastore({ filename: userData+'/dist/persons.db'});
 
-db = new Datastore({ filename: 'D://db/persons.db'});
+var dbLocation = ''
+if(process.platform === "win32") {
+    dbLocation = 'D://db/persons.db';
+}
+else {
+  dbLocation = userData+'/dist/persons.db';
+}
+db = new Datastore({ filename: dbLocation });
 
-// db = new Datastore({ filename: '~/Desktop/test.db'});
+
 
 if (process.mas) app.setName('借款系统')
 
@@ -31,6 +37,7 @@ function initialize () {
       height: 840,
       title: app.getName()
     }
+    // console.log(process.platform)
 
     if (process.platform === 'linux') {
       windowOptions.icon = path.join(__dirname, '/assets/app-icon/png/512.png')

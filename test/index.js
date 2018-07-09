@@ -47,30 +47,5 @@ describe('Application launch', function () {
       return
     })
 
-    
-    // .then(function (pass) {
-    //   pass.value.key('1234')
-    //   return this.app.client.elementIdText('get-started').click()
-    // })
-    // .then(function (){
-    //   return this.app.client.elementIdText('wrongPass')
-    // })
-    // .then(function (message) {
-    //   return message.isVisible().should.eventually.be.true
-    // })
-
-
-
-
-    // var password = await this.app.client.elementIdText('pass')
-    // await password.value.keys('123')
-    // var errorMessage = await this.app.client.elementIdText('wrongPass')
-    // var signInButton = await this.app.client.elementIdText('get-started')
-    // signInButton.click()
-    // errorMessage.isVisible().should.eventually.be.true
-    // await password.value.keys('123456')
-    // signInButton.click()
-    // errorMessage.isVisible().should.eventually.be.false
-    // return true
   })
 })
