@@ -75,17 +75,13 @@ function loadData() {
       "<td>" + tableData[d].bankName + "</td>" +
       "<td>" + tableData[d].openingBank + "</td>" +
       "<td>" + tableData[d].startTime + "</td>" +
-      "<td>" + getInterestPaymentData(tableData[d]) + "</td>" +
+      // "<td>" + getInterestPaymentData(tableData[d]) + "</td>" +
       "<td>" + tableData[d].endTime + "</td>" +
       "<td>" + tableData[d].amount + "</td>" +
       "<td>" + tableData[d].interestRate + "</td>" +
       "<td>" + parseFloat(tableData[d].interest).toFixed(2) + "</td>" +
       "<td>" + tableData[d].tax + "</td>" +
       "<td>" + tableData[d].actualInterest + "</td>" +
-      "<td>" + tableData[d].firstPayment + "</td>" +
-      "<td>" + tableData[d].restPayment + "</td>" +
-      "<td>" + tableData[d].restPayment + "</td>" +
-      "<td>" + (tableData[d].actualInterest - tableData[d].firstPayment - tableData[d].restPayment *2).toFixed(2) + "</td>" +
       "</tr>"
   }
   calculateSum()
@@ -110,10 +106,10 @@ function calculateSum() {
   document.getElementById("interest-sum").innerHTML = interestSum.toFixed(2)
   document.getElementById("tax-sum").innerHTML = taxSum.toFixed(2)
   document.getElementById("actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
-  document.getElementById("first-interest-sum").innerHTML = firstInterestSum.toFixed(2)
-  document.getElementById("second-interest-sum").innerHTML = secondInterestSum.toFixed(2)
-  document.getElementById("third-interest-sum").innerHTML = thirdInterestSum.toFixed(2)
-  document.getElementById("fourth-interest-sum").innerHTML = fourthInterestSum.toFixed(2)
+  // document.getElementById("first-interest-sum").innerHTML = firstInterestSum.toFixed(2)
+  // document.getElementById("second-interest-sum").innerHTML = secondInterestSum.toFixed(2)
+  // document.getElementById("third-interest-sum").innerHTML = thirdInterestSum.toFixed(2)
+  // document.getElementById("fourth-interest-sum").innerHTML = fourthInterestSum.toFixed(2)
 }
 
 

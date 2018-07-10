@@ -13,7 +13,6 @@ if(process.platform === "win32") {
 else {
     dbLocation = userData+'/dist/persons.db';
 }
-
 db = new Datastore({ filename: dbLocation , autoload: true });
 
 
