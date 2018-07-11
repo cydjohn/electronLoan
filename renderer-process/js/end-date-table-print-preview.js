@@ -32,7 +32,7 @@ function loadData() {
             "<td>" + tableData[d].endTime + "</td>" +
             "<td>" + tableData[d].amount + "</td>" +
             "<td>" + tableData[d].actualInterest + "</td>" +
-            "<td>" + parseFloat(tableData[d].actualInterest + tableData[d].amount).toFixed(2) + "</td>" +
+            "<td>" + (parseFloat(endDateTableData[d].actualInterest) + parseFloat(endDateTableData[d].amount)).toFixed(2) + "</td>" +
             "</tr>"
     }
     calculateSum()
