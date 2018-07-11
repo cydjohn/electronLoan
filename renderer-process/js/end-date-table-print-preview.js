@@ -31,6 +31,7 @@ function loadData() {
             "<td>" + tableData[d].startTime + "</td>" +
             "<td>" + tableData[d].endTime + "</td>" +
             "<td>" + tableData[d].amount + "</td>" +
+            "<td>" + tableData[d].actualInterest + "</td>" +
             "</tr>"
     }
     calculateSum()
@@ -39,10 +40,13 @@ function loadData() {
 
 function calculateSum() {
     var loanSum = 0;
+    var acturalInterestSum = 0;
     for (i in tableData) {
-      loanSum += parseFloat(tableData[i].amount)
+      loanSum += parseFloat(tableData[i].amount);
+      acturalInterestSum += parseFloat(tableData[i].actualInterest);
     }
-    document.getElementById("end-date-table-loan-sum").innerHTML = loanSum
+    document.getElementById("end-date-table-loan-sum").innerHTML = loanSum;
+    document.getElementById("end-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
   }
 
 
