@@ -22,18 +22,18 @@ const interest = document.getElementById('interest')
 const interestRate = document.getElementById('interest-rate')
 const tax = document.getElementById('tax')
 const actualInterest = document.getElementById('actual-interest')
-const dailyInterest = document.getElementById('daily-interest')
-const firstPaymentDay = document.getElementById('first-payment-day')
-const secondPaymentDay = document.getElementById('second-payment-day')
-const thirdPaymentDay = document.getElementById('third-payment-day')
-const fourthPaymentDay = document.getElementById('fourth-payment-day')
+// const dailyInterest = document.getElementById('daily-interest')
+// const firstPaymentDay = document.getElementById('first-payment-day')
+// const secondPaymentDay = document.getElementById('second-payment-day')
+// const thirdPaymentDay = document.getElementById('third-payment-day')
+// const fourthPaymentDay = document.getElementById('fourth-payment-day')
 
 const oneYearButton = document.getElementById('one-year-duration-button')
 
 let canSubmit = false
 alertLabel.hidden = true
 var loan = {}
-
+resetPage()
 
 
 btn.addEventListener('click', () => {
@@ -241,51 +241,50 @@ tax.addEventListener('input', () => {
 
 function calculatePaymentDate() {
     actualInterest.value = (interest.value - tax.value).toFixed(2)
-    var paymentDates = ['03-15', '06-15', '09-15', '12-15']
-    var year = startTime.value.slice(0, 4)
-    for (d in paymentDates) {
-        if (moment(startTime.value).isBefore(moment(year + "-" + paymentDates[d], 'YYYY-MM-DD'))) {
-            dailyInterest.value = (actualInterest.value / 360).toFixed(2)
-            var firstPay = (dailyInterest.value * (moment((year + "-" + paymentDates[d]), 'YYYY-MM-DD').diff(moment(startTime.value), 'days') - 2)).toFixed(2)
-            loan.firstDay = year + "-" + paymentDates[d]
-            if (++d == 4) {
-                ++year
-                d = 0
+    // var paymentDates = ['03-15', '06-15', '09-15', '12-15']
+    // var year = startTime.value.slice(0, 4)
+    // for (d in paymentDates) {
+    //     if (moment(startTime.value).isBefore(moment(year + "-" + paymentDates[d], 'YYYY-MM-DD'))) {
+    //         // dailyInterest.value = (actualInterest.value / 360).toFixed(2)
+    //         var firstPay = (dailyInterest.value * (moment((year + "-" + paymentDates[d]), 'YYYY-MM-DD').diff(moment(startTime.value), 'days') - 2)).toFixed(2)
+    //         // loan.firstDay = year + "-" + paymentDates[d]
+    //         // if (++d == 4) {
+    //         //     ++year
+    //         //     d = 0
 
-            }
-            loan.secondDay = year + "-" + paymentDates[d]
+    //         // }
+    //         // loan.secondDay = year + "-" + paymentDates[d]
 
-            if (++d == 4) {
-                ++year
-                d = 0
+    //         // if (++d == 4) {
+    //         //     ++year
+    //         //     d = 0
 
-            }
-            loan.thirdDay = year + "-" + paymentDates[d]
+    //         // }
+    //         // loan.thirdDay = year + "-" + paymentDates[d]
 
-            if (++d == 4) {
-                ++year
-                d = 0
+    //         // if (++d == 4) {
+    //         //     ++year
+    //         //     d = 0
 
-            }
-            loan.fourthDay = year + "-" + paymentDates[d]
+    //         // }
+    //         // loan.fourthDay = year + "-" + paymentDates[d]
 
-            firstPaymentDay.value = loan.firstDay + " " + firstPay + "￥"
-            var restInterest = ((actualInterest.value - dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)) / 3).toFixed(2)
-            loan.restPayment = ((actualInterest.value - firstPay) / 3).toFixed(2)
-            secondPaymentDay.value = loan.secondDay + " " + loan.restPayment + "￥"
-            thirdPaymentDay.value = loan.thirdDay + " " + loan.restPayment + "￥"
-            fourthPaymentDay.value = loan.fourthDay + " " + (actualInterest.value - firstPay - loan.restPayment *2).toFixed(2) + "￥"
-            loan.firstPayment = firstPay
+    //         // firstPaymentDay.value = loan.firstDay + " " + firstPay + "￥"
+    //         // var restInterest = ((actualInterest.value - dailyInterest.value * (moment(paymentDates[d], 'MM-DD').diff(moment(startTime.value), 'days') - 2)) / 3).toFixed(2)
+    //         // loan.restPayment = ((actualInterest.value - firstPay) / 3).toFixed(2)
+    //         // secondPaymentDay.value = loan.secondDay + " " + loan.restPayment + "￥"
+    //         // thirdPaymentDay.value = loan.thirdDay + " " + loan.restPayment + "￥"
+    //         // fourthPaymentDay.value = loan.fourthDay + " " + (actualInterest.value - firstPay - loan.restPayment *2).toFixed(2) + "￥"
+    //         // loan.firstPayment = firstPay
             
-            break
-        }
-    }
+    //         break
+        // }
+    // }
 }
 
 
 
 function resetPage() {
-    
     document.getElementById("contract-number").value = ""
     document.getElementById("name").value = ""
     document.getElementById("id-number").value = ""
@@ -297,12 +296,12 @@ function resetPage() {
     document.getElementById("end-time").value = ""
 
     document.getElementById('interest').value = ""
-    document.getElementById('interest-rate').value = "6.3"
+    document.getElementById('interest-rate').value = "6.1"
     document.getElementById('tax').value = ""
     document.getElementById('actual-interest').value = ""
-    document.getElementById('daily-interest').value = ""
-    document.getElementById('first-payment-day').value = ""
-    document.getElementById('second-payment-day').value = ""
-    document.getElementById('third-payment-day').value = ""
-    document.getElementById('fourth-payment-day').value = ""
+    // document.getElementById('daily-interest').value = ""
+    // document.getElementById('first-payment-day').value = ""
+    // document.getElementById('second-payment-day').value = ""
+    // document.getElementById('third-payment-day').value = ""
+    // document.getElementById('fourth-payment-day').value = ""
 }
