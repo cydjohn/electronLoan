@@ -27,16 +27,16 @@ ipcRenderer.on('delete-contract-number', (event, arg) => {
 })
 
 function getInterestPaymentAmount(rowData) {
-  if(moment(rowData.firstDay).isBefore(moment(interestDate.value))) {
-    if(moment(rowData.secondDay).isBefore(moment(interestDate.value))){
-      if(moment(rowData.thirdDay).isBefore(moment(interestDate.value))){
-        if(moment(rowData.fourthDay).isBefore(moment(interestDate.value))){
+  if (moment(rowData.firstDay).isBefore(moment(interestDate.value))) {
+    if (moment(rowData.secondDay).isBefore(moment(interestDate.value))) {
+      if (moment(rowData.thirdDay).isBefore(moment(interestDate.value))) {
+        if (moment(rowData.fourthDay).isBefore(moment(interestDate.value))) {
           // 过期的
           return 0.0
         }
         else {
           console.log("last")
-          return (rowData.actualInterest - rowData.firstPayment - rowData.restPayment *2).toFixed(2)
+          return (rowData.actualInterest - rowData.firstPayment - rowData.restPayment * 2).toFixed(2)
         }
       }
       else {
@@ -70,7 +70,7 @@ function loadData() {
 
       "<td>" + getInterestPaymentAmount(interestDateTableData[d]) + "</td>" +
       "</tr>"
-      acturalInterestSum += parseFloat(getInterestPaymentAmount(interestDateTableData[d]))
+    acturalInterestSum += parseFloat(getInterestPaymentAmount(interestDateTableData[d]))
   }
   document.getElementById("interest-date-table-actural-interest-sum").innerHTML = acturalInterestSum.toFixed(2)
 
@@ -80,13 +80,16 @@ function loadData() {
 // 打印预览
 const printPreview = document.getElementById('interest-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', [interestDateTableData,interestDate.value])
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/interest-date-table-print-preview.html')
-  let win = new BrowserWindow({ width: 1000, height: 1000 })
-  // win.webContents.openDevTools()
-  win.on('close', () => { win = null })
-  win.loadURL(modalPath)
-  win.show()
+  dialog.showSaveDialog({
+    title: '付息时间表',
+    defaultPath: '~/付息时间表.xlsx'
+  }, function (result) {
+    console.log(result)
+    /* html表格转excel */
+    var wb = XLSX.utils.table_to_book(document.getElementById('interest-date-dataTable'));
+    /* 生成文件，导出D盘 */
+    XLSX.writeFile(wb, result);
+  });
 })
 
 // 付息日筛选

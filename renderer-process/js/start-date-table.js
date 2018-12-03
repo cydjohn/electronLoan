@@ -62,12 +62,16 @@ function calculateSum() {
 // 打印预览
 const printPreview = document.getElementById('start-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', [startDateTableData,startDate])
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/start-date-table-print-preview.html')
-  let win = new BrowserWindow({ width: 800, height: 1000 })
-  win.on('close', () => { win = null })
-  win.loadURL(modalPath)
-  win.show()
+  dialog.showSaveDialog({
+    title: '借款时间表',
+    defaultPath: '~/借款时间表.xlsx'
+  }, function (result) {
+    console.log(result)
+    /* html表格转excel */
+    var wb = XLSX.utils.table_to_book(document.getElementById('start-date-dataTable'));
+    /* 生成文件，导出D盘 */
+    XLSX.writeFile(wb, result);
+  });
 })
 
 

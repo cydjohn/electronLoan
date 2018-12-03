@@ -51,12 +51,16 @@ function calculateSum() {
 // 打印预览
 const printPreview = document.getElementById('end-date-table-print-preview')
 printPreview.addEventListener('click', (event) => {
-  ipcRenderer.send('pass-print-value', [endDateTableData, endDate.value])
-  const modalPath = path.join('file://', __dirname, '../../sections/windows/end-date-table-print-preview.html')
-  let win = new BrowserWindow({ width: 800, height: 1000 })
-  win.on('close', () => { win = null })
-  win.loadURL(modalPath)
-  win.show()
+  dialog.showSaveDialog({
+    title: '还款时间表',
+    defaultPath: '~/还款时间表.xlsx'
+  }, function (result) {
+    console.log(result)
+    /* html表格转excel */
+    var wb = XLSX.utils.table_to_book(document.getElementById('end-date-table'));
+    /* 生成文件，导出D盘 */
+    XLSX.writeFile(wb, result);
+  });
 })
 
 
